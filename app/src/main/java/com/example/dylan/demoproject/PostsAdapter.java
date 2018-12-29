@@ -1,6 +1,6 @@
 package com.example.dylan.demoproject;
 
-import android.support.v4.widget.TextViewCompat;
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +17,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         }
     }
 
+    private Context mContext;
     private Post[] mPosts;
 
     public PostsAdapter(Post[] posts) {
@@ -27,11 +28,21 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
      * Create new views (invoked by the layout manager)
      */
     @Override
-    public PostViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PostViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+        // rename viewHolder
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.post_view_holder, parent, false);
-        PostViewHolder postHolder = new PostViewHolder(view);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RecyclerView rv = (RecyclerView) parent;
+                int itemPosition = rv.getChildLayoutPosition(v);
+                Post post = mPosts[itemPosition];
+                // TODO: After refresh button, we don't set adapter context, so this start activity fails -> NPE.
+                ListPostsActivity.startDisplayPostActivity(mContext, post);
 
-        return postHolder;
+            }
+        });
+        return new PostViewHolder(view);
     }
 
     /**
@@ -51,4 +62,7 @@ public class PostsAdapter extends RecyclerView.Adapter<PostsAdapter.PostViewHold
         return mPosts.length;
     }
 
+    public void setContext(Context context) {
+        mContext = context;
+    }
 }

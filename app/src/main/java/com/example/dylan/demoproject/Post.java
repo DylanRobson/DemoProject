@@ -24,4 +24,20 @@ public class Post {
 
         return sBuilder.toString();
     }
+
+    public int getUserId() {
+        return mUserId;
+    }
+
+    public int getPostId() {
+        return mPostId;
+    }
+
+    public String getTitle() {
+        return mTitle;
+    }
+
+    public String getBody() {
+        return mBody;
+    }
 }
