@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
+
 public class DisplayPostActivity extends AppCompatActivity {
 
     private TextView mUserIdTextView;
@@ -42,22 +44,13 @@ public class DisplayPostActivity extends AppCompatActivity {
         mUserIdTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DisplayPostActivity.startDisplayUserActivity(context, userId);
+                StartActivityUtils.startDisplayUserActivity(context, userId);
             }
         });
+
+        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
+        // Show Comments for the given Post
+        baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listCommentsForPost(postId));
     }
 
-    // TODO: public static void startDisplayUserActivity
-    // TODO: public static startCommentsActivity
-
-    /**
-     * Starts DisplayUserActivity.
-     */
-    public static void startDisplayUserActivity(Context context, int userId) {
-        Intent intent = new Intent(context, DisplayUserActivity.class);
-
-        intent.putExtra(context.getString(R.string.EXTRA_USER_ID), userId);
-
-        context.startActivity(intent);
-    }
 }

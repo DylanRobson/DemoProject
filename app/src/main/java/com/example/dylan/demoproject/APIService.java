@@ -1,5 +1,6 @@
 package com.example.dylan.demoproject;
 
+import com.example.dylan.demoproject.Model.Comment;
 import com.example.dylan.demoproject.Model.Post;
 import com.example.dylan.demoproject.Model.User;
 
@@ -16,13 +17,12 @@ public interface APIService {
     @GET("posts")
     Call<List<Post>> listPosts();
 
-
     // @GET("users")
     // Call<List<User>> listUsers();
 
     // TODO: /posts/{postId}/comments
-//    @GET("posts/{postId}/comments")
-//    Call<List<Comment>> listCommentsForPost(@Path("postId") int postId);
+    @GET("posts/{postId}/comments")
+    Call<List<Comment>> listCommentsForPost(@Path("postId") int postId);
 
     //region List requests for queried User id...
     // TODO: /posts?userId=1
@@ -30,12 +30,12 @@ public interface APIService {
     Call<List<Post>> listPostsForUser(@Query("userId") int userId);
 
     // TODO: /comments?userId=1
-//    @GET("comments")
-//    Call<List<Comment>> listCommentsForUser(@Query("userId") int userId) {}
+    @GET("comments")
+    Call<List<Comment>> listCommentsForUser(@Query("userId") int userId);
 
     // TODO: /albums?userId=1
     // @GET("albums")
-    // getAlbumsForUser() {}
+    // Call<List<Album>> listAlbumsForUser(@Query("userId") int userId);
 
     //endregion
     //endregion

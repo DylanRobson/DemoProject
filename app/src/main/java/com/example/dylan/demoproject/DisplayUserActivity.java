@@ -6,11 +6,8 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.dylan.demoproject.Model.Post;
 import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -43,11 +40,10 @@ public class DisplayUserActivity extends AppCompatActivity {
                 switch (checkedId) {
                     case R.id.filter_posts_radio_button:
                         // TODO:
-                        Call<List<Post>> apiCall = APIController.getApiInstance().listPostsForUser(userId);
-                        mBaseRecyclerViewFragment.updateListView(apiCall);
+                        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPostsForUser(userId));
                         break;
                     case R.id.filter_comments_radio_button:
-                        //Call<List<Comment>> apiCall = APIController.getApiInstance().listCommentsFor(userId);
+                        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listCommentsForUser(userId));
                         break;
                     case R.id.filter_albums_radio_button:
                         break;

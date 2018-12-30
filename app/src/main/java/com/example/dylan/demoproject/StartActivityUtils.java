@@ -20,4 +20,15 @@ public class StartActivityUtils {
 
         context.startActivity(intent);
     }
+
+    /**
+     * Starts DisplayUserActivity.
+     */
+    public static void startDisplayUserActivity(Context context, int userId) {
+        Intent intent = new Intent(context, DisplayUserActivity.class);
+
+        intent.putExtra(context.getString(R.string.EXTRA_USER_ID), userId);
+
+        context.startActivity(intent);
+    }
 }
