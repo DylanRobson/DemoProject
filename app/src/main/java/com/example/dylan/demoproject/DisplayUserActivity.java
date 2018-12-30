@@ -3,21 +3,22 @@ package com.example.dylan.demoproject;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.Model.User;
+import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class DisplayUserActivity extends AppCompatActivity {
 
-    //RecyclerViewFragment listPostsFragment;
+    BaseRecyclerViewFragment mBaseRecyclerViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,29 +26,35 @@ public class DisplayUserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_display_user);
         setTitle("DisplayUserActivity");
 
+        Intent intent = getIntent();
+        final int userId = intent.getIntExtra(getString(R.string.EXTRA_USER_ID), -1);
+        updateUserView(userId);
+
+        mBaseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
+        // Show Posts by user by default. This relies on the assumption that the Posts radio button is default selection.
+        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPostsForUser(userId));
+
+
         RadioGroup filterUserContentRadioGroup = findViewById(R.id.filter_user_content_radio_group);
         filterUserContentRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO: Change the RecyclerViewFragment being shown: either Posts, Comments, or Albums RecyclerViewFragment.
+                // TODO: Change the RecyclerViewFragment being shown: either Posts, Comments, or Albums.
                 switch (checkedId) {
                     case R.id.filter_posts_radio_button:
                         // TODO:
+                        Call<List<Post>> apiCall = APIController.getApiInstance().listPostsForUser(userId);
+                        mBaseRecyclerViewFragment.updateListView(apiCall);
                         break;
                     case R.id.filter_comments_radio_button:
+                        //Call<List<Comment>> apiCall = APIController.getApiInstance().listCommentsFor(userId);
                         break;
                     case R.id.filter_albums_radio_button:
-                        break;
-                    default:
                         break;
                 }
             }
         });
 
-        Intent intent = getIntent();
-        final int userId = intent.getIntExtra(getString(R.string.EXTRA_USER_ID), -1);
-
-        updateUserView(userId);
     }
 
     // TODO: impl. Callback<User> in this, for cleaner style.
@@ -76,4 +83,5 @@ public class DisplayUserActivity extends AppCompatActivity {
             }
         });
     }
+
 }

@@ -47,8 +47,9 @@
     </RadioGroup>
 
     <fragment
-        android:name="com.example.dylan.demoproject.RecyclerViewFragment"
-        android:id="@+id/list_posts_fragment"
+        android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"
+        android:id="@+id/base_list_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+
 </LinearLayout>
