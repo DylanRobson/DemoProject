@@ -28,4 +28,8 @@ public class Photo {
 
         return sBuilder.toString();
     }
+
+    public String getUrl() {
+        return mUrl;
+    }
 }

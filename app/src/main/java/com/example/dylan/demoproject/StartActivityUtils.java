@@ -45,4 +45,11 @@ public class StartActivityUtils {
     }
 
     // TODO: startDisplayPhotoActivity
+    public static void startDisplayPhotoActivity(Context context, String photoUrl) {
+        Intent intent = new Intent(context, DisplayPhotoActivity.class);
+
+        intent.putExtra(context.getString(R.string.EXTRA_PHOTO_URL), photoUrl);
+
+        context.startActivity(intent);
+    }
 }

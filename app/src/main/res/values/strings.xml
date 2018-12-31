@@ -7,4 +7,5 @@
     <string name="EXTRA_POST_ID">com.example.dylan.demoproject.EXTRA_POST_ID</string>
     <string name="EXTRA_POST_TITLE">com.example.dylan.demoproject.EXTRA_POST_TITLE</string>
     <string name="EXTRA_POST_BODY">com.example.dylan.demoproject.EXTRA_POST_BODY</string>
+    <string name="EXTRA_PHOTO_URL">com.example.dylan.demoproject.EXTRA_PHOTO_URL</string>
 </resources>
