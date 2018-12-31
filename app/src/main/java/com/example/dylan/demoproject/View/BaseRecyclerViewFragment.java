@@ -1,6 +1,7 @@
 package com.example.dylan.demoproject.View;
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +23,7 @@ import retrofit2.Response;
 public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<List<E>> {
 
     private RecyclerView mBaseRecyclerView;
+    private FloatingActionButton mRefreshFloatingButton;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,6 +31,10 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
         // container passed to onCreateView is parent viewgroup from activity's layout.
         // TODO: docs say inflate, is my way correct?
         //View debugMe = inflater.inflate(R.layout.fragment_base_list, container, false);
+
+        // TODO: just do this fab xml, not programatically!
+        //mRefreshFloatingButton = new FloatingActionButton(getActivity());
+        // TODO: inflater.inflate(R.layout.refresh_floating_button, container, false);
 
         // TODO: can we replace getActivity with "this"? getActivity is Fragment.
         mBaseRecyclerView = new RecyclerView(getActivity());
@@ -74,6 +80,12 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
 //                updateAdapter = new PostRecyclerViewAdapter(objArr);
 //
 //            } else
+
+            // TODO: fix hacky workaround, got indexBoundsExcep. after CreatePostActiv.createPostButton clicked..
+            // try to recreate issue.
+            if(objArr.length == 0) {
+                return;
+            }
 
             if (objArr[0] instanceof Post) {
                 updateAdapter = new PostRecyclerViewAdapter(objArr);

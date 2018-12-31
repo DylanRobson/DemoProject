@@ -5,16 +5,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.StartActivityUtils;
+import com.squareup.picasso.Picasso;
 
 public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 
     public static class PhotoViewHolder extends BaseRecyclerViewAdapter.BaseViewHolder {
+        public ImageView mThumbnailView;
         public PhotoViewHolder(View view) {
             super(view);
+            mThumbnailView = view.findViewById(R.id.thumbnail_view);
         }
 
 //        /**
@@ -37,7 +41,7 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
      */
     @Override
     public PhotoRecyclerViewAdapter.PhotoViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-        final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_view_holder, parent, false);
+        final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.photo_view_holder, parent, false);
         final Context context = parent.getContext();
 
         layout.setOnClickListener(new View.OnClickListener() {
@@ -52,5 +56,18 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         });
 
         return new PhotoRecyclerViewAdapter.PhotoViewHolder(layout);
+    }
+
+    /**
+     * Replace the contents of a ViewHolder (invoked by the layout manager)
+     */
+    @Override
+    public void onBindViewHolder(BaseViewHolder baseViewHolder, int position) {
+        super.onBindViewHolder(baseViewHolder, position);
+
+        Photo photo = (Photo) getObjects()[position];
+        String thumbnailUrl = photo.getThumbnailUrl();
+        PhotoViewHolder photoViewHolder = (PhotoViewHolder) baseViewHolder;
+        Picasso.get().load(thumbnailUrl).into(photoViewHolder.mThumbnailView);
     }
 }

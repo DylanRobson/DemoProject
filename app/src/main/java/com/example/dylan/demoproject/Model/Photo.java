@@ -32,4 +32,8 @@ public class Photo {
     public String getUrl() {
         return mUrl;
     }
+
+    public String getThumbnailUrl() {
+        return mThumbnailUrl;
+    }
 }

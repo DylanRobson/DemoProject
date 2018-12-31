@@ -22,6 +22,9 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerVi
     }
 
     private Object[] mObjects;
+    // TODO:
+    //private boolean mInfoViewVisible;
+    //private boolean mFilterViewVisible;
 
     public BaseRecyclerViewAdapter() {
         this(new Object[0]);
@@ -37,6 +40,11 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerVi
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_view_holder, parent, false);
+        // TODO: We should create different ViewHolder based on index. We can get VH index here as shown in subclasses onCreateVH.
+        // 0 = infoViewHolder.
+        // 1 = filterViewHolder.
+        // default = baseViewHolder.
+
         // TODO: generic viewHolder.onClickListener ? not possible? - bc in PostsAdapter, the onClick starts DisplayPostActivity.
 
         return new BaseViewHolder(layout);
@@ -47,8 +55,23 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerVi
      */
     @Override
     public void onBindViewHolder(BaseViewHolder baseViewHolder, int position) {
+        // TODO:
+        switch (position) {
+            case 0:
+                // if (mInfoViewVisible) {}
+                // Set infoView
+                break;
+            case 1:
+                // if (mFilterViewVisible) {}
+                // Set filterView
+                break;
+            default:
+                // Set remaining as BaseViewHolders - just mTextView.setText
+                break;
+        }
         // TODO: if (position == 0) { baseViewHolder.mTextView.setVisible(false); baseViewHolder.mFilterRadioGroup.setVisible(true); }
         // TODO: Or separate RadioGroup ViewHolder class?... (Prob. better option, why have textView if unused.)
+
         baseViewHolder.mTextView.setText(mObjects[position].toString());
     }
 

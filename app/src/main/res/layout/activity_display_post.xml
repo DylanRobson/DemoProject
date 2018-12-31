@@ -12,14 +12,14 @@
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
         android:background="@color/design_default_color_primary"
-        android:padding="16dp" />
+        android:padding="@dimen/text_margin" />
     <TextView
         android:id="@+id/post_id_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
         android:background="@color/colorPrimary"
-        android:padding="16dp"
+        android:padding="@dimen/text_margin"
         app:layout_constraintTop_toBottomOf="@id/user_id_text_view" />
     <TextView
         android:id="@+id/post_title_text_view"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
         android:background="@color/design_default_color_primary"
-        android:padding="16dp"
+        android:padding="@dimen/text_margin"
         app:layout_constraintTop_toBottomOf="@id/post_id_text_view" />
     <TextView
         android:id="@+id/post_body_text_view"
@@ -35,7 +35,7 @@
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
         android:background="@color/colorPrimary"
-        android:padding="16dp"
+        android:padding="@dimen/text_margin"
         app:layout_constraintTop_toBottomOf="@id/post_title_text_view" />
 
     <fragment

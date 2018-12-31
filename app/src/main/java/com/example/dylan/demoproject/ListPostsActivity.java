@@ -1,5 +1,6 @@
 package com.example.dylan.demoproject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,19 @@ public class ListPostsActivity extends AppCompatActivity {
         baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPosts());
 
         configureToolbar();
-        configureFloatingActionButton();
+        configureCreatePostFloatingButton();
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        // seems after onCreate, also calls onResume, so updating listView twice.
+//        // TODO: fix copypasta. this functionality should also be in BaseRVFrag with a RefreshFloatingActionButton.
+//        // TODO: actually onResume seems useless, because the API doesn't actually modify the posts set, even though it accepts the POST request.
+//        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
+//        // Show all Posts by default
+//        baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPosts());
+//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,15 +69,16 @@ public class ListPostsActivity extends AppCompatActivity {
      * Currently serves as refresh/fetch button
      * TODO: make create new Post button (HTTP POST request).
      */
-    private void configureFloatingActionButton() {
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+    private void configureCreatePostFloatingButton() {
+        final Context context = this;
+        FloatingActionButton postFab = findViewById(R.id.create_post_floating_button);
+        postFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
-                //mListPostsFragment.updatePostsView();
+                StartActivityUtils.startCreatePostActivity(context);
             }
         });
     }

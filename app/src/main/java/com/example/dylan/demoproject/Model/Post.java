@@ -40,4 +40,16 @@ public class Post {
     public String getBody() {
         return mBody;
     }
+
+    public void setUserId(int userId) {
+        mUserId = userId;
+    }
+
+    public void setTitle(String title) {
+        mTitle = title;
+    }
+
+    public void setBody(String body) {
+        mBody = body;
+    }
 }

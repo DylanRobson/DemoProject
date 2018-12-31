@@ -24,7 +24,8 @@
         <activity android:name=".DisplayPostActivity" />
         <activity android:name=".DisplayUserActivity" />
         <activity android:name=".DisplayAlbumActivity" />
-        <activity android:name=".DisplayPhotoActivity"></activity>
+        <activity android:name=".DisplayPhotoActivity" />
+        <activity android:name=".CreatePostActivity"></activity>
     </application>
 
 </manifest>

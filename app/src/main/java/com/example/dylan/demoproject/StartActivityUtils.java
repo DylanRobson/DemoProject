@@ -32,7 +32,6 @@ public class StartActivityUtils {
         context.startActivity(intent);
     }
 
-    // TODO:
     /**
      * Starts DisplayAlbumActivity.
      */
@@ -44,7 +43,9 @@ public class StartActivityUtils {
         context.startActivity(intent);
     }
 
-    // TODO: startDisplayPhotoActivity
+    /**
+     * Starts DisplayPhotoActivity.
+     */
     public static void startDisplayPhotoActivity(Context context, String photoUrl) {
         Intent intent = new Intent(context, DisplayPhotoActivity.class);
 
@@ -52,4 +53,16 @@ public class StartActivityUtils {
 
         context.startActivity(intent);
     }
+
+    /**
+     * Starts CreatePostActivity.
+     */
+    public static void startCreatePostActivity(Context context) {
+        Intent intent = new Intent(context, CreatePostActivity.class);
+
+        context.startActivity(intent);
+    }
+
+    // TODO: startAboutActivity()
+    // TODO: startSettingsActivity()
 }
