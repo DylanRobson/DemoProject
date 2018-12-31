@@ -31,4 +31,8 @@ public class StartActivityUtils {
 
         context.startActivity(intent);
     }
+
+    // TODO: startDisplayAlbumActivity
+
+    // TODO: startDisplayPhotoActivity
 }

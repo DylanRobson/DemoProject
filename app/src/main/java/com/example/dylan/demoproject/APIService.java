@@ -1,5 +1,6 @@
 package com.example.dylan.demoproject;
 
+import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Comment;
 import com.example.dylan.demoproject.Model.Post;
 import com.example.dylan.demoproject.Model.User;
@@ -19,6 +20,9 @@ public interface APIService {
 
     // @GET("users")
     // Call<List<User>> listUsers();
+
+    @GET("albums")
+    Call<List<Album>> listAlbums();
 
     // TODO: /posts/{postId}/comments
     @GET("posts/{postId}/comments")
