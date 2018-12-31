@@ -32,7 +32,17 @@ public class StartActivityUtils {
         context.startActivity(intent);
     }
 
-    // TODO: startDisplayAlbumActivity
+    // TODO:
+    /**
+     * Starts DisplayAlbumActivity.
+     */
+    public static void startDisplayAlbumActivity(Context context, int albumId) {
+        Intent intent = new Intent(context, DisplayAlbumActivity.class);
+
+        intent.putExtra(context.getString(R.string.EXTRA_ALBUM_ID), albumId);
+
+        context.startActivity(intent);
+    }
 
     // TODO: startDisplayPhotoActivity
 }

@@ -39,13 +39,13 @@ public class DisplayUserActivity extends AppCompatActivity {
                 // TODO: Change the RecyclerViewFragment being shown: either Posts, Comments, or Albums.
                 switch (checkedId) {
                     case R.id.filter_posts_radio_button:
-                        // TODO:
                         mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPostsForUser(userId));
                         break;
                     case R.id.filter_comments_radio_button:
                         mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listCommentsForUser(userId));
                         break;
                     case R.id.filter_albums_radio_button:
+                        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listAlbumsForUser(userId));
                         break;
                 }
             }

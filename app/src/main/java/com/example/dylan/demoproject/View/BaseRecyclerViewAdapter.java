@@ -8,13 +8,15 @@ import android.widget.TextView;
 
 import com.example.dylan.demoproject.R;
 
-// TODO: RENAME BaseRecyclerViewAdapter, android.widget.listView already exists.
 public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerViewAdapter.BaseViewHolder> {
 
+    /**
+     * ViewHolder contains the views for each row within the RecyclerView.
+     */
     public static class BaseViewHolder extends RecyclerView.ViewHolder {
         public TextView mTextView;
         public BaseViewHolder(View view) {
-            super(view); // TODO: Rfile.
+            super(view);
             mTextView = view.findViewById(R.id.base_text_view);
         }
     }
@@ -30,7 +32,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerVi
     }
 
     /**
-     * Create new views (invoked by the layout manager)
+     * Create new ViewHolders (invoked by the layout manager)
      */
     @Override
     public BaseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -41,10 +43,12 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<BaseRecyclerVi
     }
 
     /**
-     * Replace the contents of a view (invoked by the layout manager)
+     * Replace the contents of a ViewHolder (invoked by the layout manager)
      */
     @Override
     public void onBindViewHolder(BaseViewHolder baseViewHolder, int position) {
+        // TODO: if (position == 0) { baseViewHolder.mTextView.setVisible(false); baseViewHolder.mFilterRadioGroup.setVisible(true); }
+        // TODO: Or separate RadioGroup ViewHolder class?... (Prob. better option, why have textView if unused.)
         baseViewHolder.mTextView.setText(mObjects[position].toString());
     }
 

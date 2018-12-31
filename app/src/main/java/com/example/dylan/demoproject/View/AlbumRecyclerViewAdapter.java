@@ -6,14 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.StartActivityUtils;
 
-public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
+public class AlbumRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 
-    public static class PostViewHolder extends BaseRecyclerViewAdapter.BaseViewHolder {
-        public PostViewHolder(View view) {
+    public static class AlbumViewHolder extends BaseRecyclerViewAdapter.BaseViewHolder {
+        public AlbumViewHolder(View view) {
             super(view);
         }
 
@@ -28,7 +28,7 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 //        }
     }
 
-    public PostRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
+    public AlbumRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
         super(objects);
     }
 
@@ -36,7 +36,7 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
      * Create new ViewHolders (invoked by the layout manager)
      */
     @Override
-    public PostRecyclerViewAdapter.PostViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
+    public AlbumRecyclerViewAdapter.AlbumViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
         final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_view_holder, parent, false);
         final Context context = parent.getContext();
 
@@ -45,11 +45,12 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             public void onClick(View v) {
                 RecyclerView rv = (RecyclerView) parent;
                 int itemPosition = rv.getChildLayoutPosition(v);
-                Post post = (Post) PostRecyclerViewAdapter.super.getObjects()[itemPosition];
-                StartActivityUtils.startDisplayPostActivity(context, post);
+                Album album = (Album) AlbumRecyclerViewAdapter.super.getObjects()[itemPosition];
+                int albumId = album.getAlbumId();
+                StartActivityUtils.startDisplayAlbumActivity(context, albumId);
             }
         });
 
-        return new PostRecyclerViewAdapter.PostViewHolder(layout);
+        return new AlbumRecyclerViewAdapter.AlbumViewHolder(layout);
     }
 }

@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Post;
 
 import java.util.List;
@@ -75,6 +76,9 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
 
             if (objArr[0] instanceof Post) {
                 updateAdapter = new PostRecyclerViewAdapter(objArr);
+            } else if (objArr[0] instanceof Album) {
+                // TODO:
+                updateAdapter = new AlbumRecyclerViewAdapter(objArr);
             } else {
                 updateAdapter = new BaseRecyclerViewAdapter(objArr);
             }
