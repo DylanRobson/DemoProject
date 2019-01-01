@@ -49,7 +49,7 @@
 
     <fragment
         android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"
-        android:id="@+id/base_list_fragment"
+        android:id="@+id/base_recycler_view_fragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

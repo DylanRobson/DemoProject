@@ -48,7 +48,7 @@ public class DisplayPostActivity extends AppCompatActivity {
             }
         });
 
-        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
+        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
         // Show Comments for the given Post
         baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listCommentsForPost(postId));
     }

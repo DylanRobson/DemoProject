@@ -4,12 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayAlbumActivity">
-
-    <fragment
-        android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"
-        android:id="@+id/base_recycler_view_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    tools:context=".View.AboutActivity">
 
 </android.support.constraint.ConstraintLayout>

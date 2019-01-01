@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.R;
 
 import java.util.List;
 
@@ -25,35 +26,54 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
     private RecyclerView mBaseRecyclerView;
     private FloatingActionButton mRefreshFloatingButton;
 
+    /** Stored so can refetch for refreshButton onClick */
+    private Call<List<E>> mLastApiCall;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
-        // container passed to onCreateView is parent viewgroup from activity's layout.
-        // TODO: docs say inflate, is my way correct?
-        //View debugMe = inflater.inflate(R.layout.fragment_base_list, container, false);
-
-        // TODO: just do this fab xml, not programatically!
-        //mRefreshFloatingButton = new FloatingActionButton(getActivity());
-        // TODO: inflater.inflate(R.layout.refresh_floating_button, container, false);
-
-        // TODO: can we replace getActivity with "this"? getActivity is Fragment.
-        mBaseRecyclerView = new RecyclerView(getActivity());
-        mBaseRecyclerView.setVerticalScrollBarEnabled(true);
-        //mPostsRecyclerView.setHasFixedSize(true);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
-        mBaseRecyclerView.setLayoutManager(linearLayoutManager);
-
-        // Add row line dividers
-        mBaseRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-
         // TODO: BaseAdapter, and setAdapter. - should base class have updateView method?...
 
-        return mBaseRecyclerView;
+        View layout = inflater.inflate(R.layout.base_recycler_view, container, false);
+
+        mRefreshFloatingButton = layout.findViewById(R.id.refresh_floating_button);
+        mRefreshFloatingButton.hide();
+        mRefreshFloatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Have to clone Retrofit Call, otherwise get IllegalStateException: already executed.
+                updateListView(mLastApiCall.clone());
+            }
+        });
+
+        mBaseRecyclerView = layout.findViewById(R.id.base_recycler_view);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        mBaseRecyclerView.setLayoutManager(linearLayoutManager);
+        //mPostsRecyclerView.setHasFixedSize(true);
+
+        DividerItemDecoration dividerDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
+        mBaseRecyclerView.addItemDecoration(dividerDecoration);
+
+        mBaseRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+
+                boolean scrollUp = dy < 0;
+                if (scrollUp) {
+                    mRefreshFloatingButton.show();
+                } else {
+                    mRefreshFloatingButton.hide();
+                }
+            }
+        });
+
+        return layout;
     }
 
     public void updateListView(Call<List<E>> apiCall) {
+        mLastApiCall = apiCall;
         // Will set mBaseRecyclerView's adapter in onResponse.
+        // TODO: Resetting adapter scrolls to top?
         apiCall.enqueue(this);
     }
 

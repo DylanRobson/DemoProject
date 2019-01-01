@@ -9,9 +9,10 @@
     tools:context=".ListPostsActivity"
     tools:showIn="@layout/activity_main">
 
+    <!-- TODO: move fragment directly into activity_main -->
     <fragment
         android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"
-        android:id="@+id/base_list_fragment"
+        android:id="@+id/base_recycler_view_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

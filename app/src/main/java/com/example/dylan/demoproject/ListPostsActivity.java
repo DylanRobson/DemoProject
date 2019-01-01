@@ -19,7 +19,7 @@ public class ListPostsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         setTitle("ListPostsActivity");
 
-        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
+        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
         // Show all Posts by default
         baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPosts());
 

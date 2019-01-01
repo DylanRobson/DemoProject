@@ -27,7 +27,7 @@ public class DisplayUserActivity extends AppCompatActivity {
         final int userId = intent.getIntExtra(getString(R.string.EXTRA_USER_ID), -1);
         updateUserView(userId);
 
-        mBaseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
+        mBaseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
         // Show Posts by user by default. This relies on the assumption that the Posts radio button is default selection.
         mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPostsForUser(userId));
 
