@@ -12,22 +12,6 @@ import com.example.dylan.demoproject.StartActivityUtils;
 
 public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 
-    public static class PostViewHolder extends BaseRecyclerViewAdapter.BaseViewHolder {
-        public PostViewHolder(View view) {
-            super(view);
-        }
-
-//        /**
-//         * Called when a view has been clicked.
-//         *
-//         * @param v The view that was clicked.
-//         */
-//        @Override
-//        public void onClick(View v) {
-//            RecyclerView rv = (RecyclerView) v;
-//        }
-    }
-
     public PostRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
         super(objects);
     }
@@ -36,20 +20,29 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
      * Create new ViewHolders (invoked by the layout manager)
      */
     @Override
-    public PostRecyclerViewAdapter.PostViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-        final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_view_holder, parent, false);
-        final Context context = parent.getContext();
+    public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RecyclerView rv = (RecyclerView) parent;
-                int itemPosition = rv.getChildLayoutPosition(v);
-                Post post = (Post) PostRecyclerViewAdapter.super.getObjects()[itemPosition];
-                StartActivityUtils.startDisplayPostActivity(context, post);
-            }
-        });
+        switch (viewType) {
+            case INFO_HOLDER_VIEW_TYPE:
+                return super.onCreateViewHolder(parent, viewType);
+            case FILTER_HOLDER_VIEW_TYPE:
+                return super.onCreateViewHolder(parent, viewType);
+            default:
+                final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_view_holder, parent, false);
+                final Context context = parent.getContext();
 
-        return new PostRecyclerViewAdapter.PostViewHolder(layout);
+                layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RecyclerView rv = (RecyclerView) parent;
+                        int itemPosition = rv.getChildLayoutPosition(v);
+                        Post post = (Post) PostRecyclerViewAdapter.super.getItems()[itemPosition];
+                        StartActivityUtils.startDisplayPostActivity(context, post);
+                    }
+                });
+
+                return new BaseViewHolder(layout);
+        }
     }
+
 }

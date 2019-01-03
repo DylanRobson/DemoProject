@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <!-- TODO: info_header_text_view ... e.g. displays: "Post Information", for now: ** InfoHeader ** (Post) -->
+
+    <!-- TODO: info_link_text_view ... e.g. User ID: 1 >> onClick >> DisplayUserActivity -->
+
+    <!-- TODO: info_body_text_view-->
+
+    <TextView
+        android:id="@+id/info_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        android:background="#ffffff"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/info_link_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:background="#4db6ac"
+        android:padding="16dp" />
+
+    <TextView
+        android:id="@+id/info_body_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoSizeTextType="uniform"
+        android:background="#ffffff"
+        android:padding="16dp" />
+
+
+</LinearLayout>

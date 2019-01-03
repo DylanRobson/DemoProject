@@ -18,6 +18,7 @@ public class Photo {
     @SerializedName("thumbnailUrl")
     private String mThumbnailUrl;
 
+    @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("mAlbumId: " + mAlbumId + '\n');

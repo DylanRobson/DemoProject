@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/filter_text_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:autoSizeTextType="uniform"
+        android:background="#ffffff"
+        android:padding="16dp" />
+
+    <!-- Filter to select RecyclerView Adapter via RadioGroup -->
+    <RadioGroup
+        android:id="@+id/filter_radio_group"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:background="#4db6ac">
+        <RadioButton
+            android:id="@+id/filter_posts_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="POSTS"
+            android:padding="16dp"/>
+        <RadioButton
+            android:id="@+id/filter_comments_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="COMMENTS"
+            android:padding="16dp"/>
+        <RadioButton
+            android:id="@+id/filter_albums_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="ALBUMS"
+            android:padding="16dp"/>
+        <RadioButton
+            android:id="@+id/filter_users_radio_button"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="USERS"
+            android:padding="16dp"/>
+        <!-- TODO: filter_users_radio_button-->
+    </RadioGroup>
+
+</LinearLayout>

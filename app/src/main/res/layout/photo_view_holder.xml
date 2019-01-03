@@ -7,15 +7,16 @@
 
     <ImageView
         android:id="@+id/thumbnail_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent" />
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center_vertical"/>
 
     <TextView
         android:id="@+id/base_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
-        android:background="@color/colorAccent"
+        android:background="@color/lightPurple"
         android:padding="@dimen/text_margin" />
 
 </android.widget.LinearLayout>

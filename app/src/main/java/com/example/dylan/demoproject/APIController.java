@@ -20,7 +20,7 @@ public class APIController {
 
     /**
      * Configure Retrofit and GSON for deserialization.
-     * */
+     */
     private static APIService configureAPI(String baseUrl) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(baseUrl)

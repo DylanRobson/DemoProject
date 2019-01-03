@@ -11,10 +11,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.dylan.demoproject.Model.Album;
+import com.example.dylan.demoproject.Model.FilterOptions;
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.Model.Post;
 import com.example.dylan.demoproject.R;
 
+import java.util.EnumSet;
 import java.util.List;
 
 import retrofit2.Call;
@@ -29,6 +31,13 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
     /** Stored so can refetch for refreshButton onClick */
     private Call<List<E>> mLastApiCall;
 
+    private Object mInfoViewContent;
+    private EnumSet<FilterOptions> mFilterViewOptions;
+    /**
+     * Stored so can re-check the RadioButton after Adapter is reset and its FilterViewHolder is redrawn.
+     */
+    private int mFilterViewCheckedId;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // TODO: BaseAdapter, and setAdapter. - should base class have updateView method?...
@@ -41,6 +50,8 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
             @Override
             public void onClick(View v) {
                 // Have to clone Retrofit Call, otherwise get IllegalStateException: already executed.
+                // updateListView will reset mBaseRecyclerView's adapter in onResponse.
+                // By resetting the adapter, it will "scroll" to the top of the RecyclerView.
                 updateListView(mLastApiCall.clone());
             }
         });
@@ -67,13 +78,14 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
             }
         });
 
+        setFilterCheckedId(R.id.filter_posts_radio_button);
+
         return layout;
     }
 
     public void updateListView(Call<List<E>> apiCall) {
         mLastApiCall = apiCall;
-        // Will set mBaseRecyclerView's adapter in onResponse.
-        // TODO: Resetting adapter scrolls to top?
+        // Will set mBaseRecyclerView's Adapter in onResponse.
         apiCall.enqueue(this);
     }
 
@@ -89,9 +101,22 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
     @Override
     public void onResponse(Call<List<E>> call, Response<List<E>> response) {
         if (response.isSuccessful()) {
-            Object[] objArr = response.body().toArray();
+            // Offset 1 for InfoVH xor FilterVH, 2 for InfoVH and FilterVH
+            final int headerItemsOffset = 2;
 
-            BaseRecyclerViewAdapter updateAdapter;
+            List<Object> responseList = (List<Object>) response.body();
+            // <editor-fold defaultstate="collapsed" desc="Add Adapter Items: infoContent, and FilterOptionsSet.">
+            /**
+             * For {@link BaseRecyclerViewAdapter.InfoViewHolder#setContent(Object)}
+             * And {@link BaseRecyclerViewAdapter.FilterViewHolder#setOptions(EnumSet, Object)}
+             */
+            // </editor-fold>
+            responseList.add(0, mInfoViewContent);
+            responseList.add(1, mFilterViewOptions);
+
+            Object[] responseArr = responseList.toArray();
+
+
             // TODO: this condition is false from ListPostsActivity call to updateListView. Despite all items in objArr being Post...
             // TODO: mBaseRecyclerView.getAdapter().mObjects is Post[] too...
             // TODO: How can I downcast Object[] to Post[] if instanceof fails? ... objArr[0] instanceof Post is horribly hacky.
@@ -103,19 +128,27 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
 
             // TODO: fix hacky workaround, got indexBoundsExcep. after CreatePostActiv.createPostButton clicked..
             // try to recreate issue.
-            if(objArr.length == 0) {
+            if(responseArr.length == headerItemsOffset) {
                 return;
+                // TODO: Do updateAdapter = new BaseRecyclerViewAdapter(responseArr) instead,
+                // so that after CreatePost, it goes to DisplayPost and sets the infoVH. - because after CreatePost ResponseList is empty, but still want to show InfoVH of the mock Post.
             }
 
-            if (objArr[0] instanceof Post) {
-                updateAdapter = new PostRecyclerViewAdapter(objArr);
-            } else if (objArr[0] instanceof Album) {
-                updateAdapter = new AlbumRecyclerViewAdapter(objArr);
-            } else if (objArr[0] instanceof Photo) {
-                updateAdapter = new PhotoRecyclerViewAdapter(objArr);
+            // TODO:
+
+            BaseRecyclerViewAdapter updateAdapter;
+            // TODO: mBaseRecyclerView.setAdapter(BaseRecyclerController.getAdapter());
+            if (responseArr[headerItemsOffset] instanceof Post) {
+                updateAdapter = new PostRecyclerViewAdapter(responseArr);
+            } else if (responseArr[headerItemsOffset] instanceof Album) {
+                updateAdapter = new AlbumRecyclerViewAdapter(responseArr);
+            } else if (responseArr[headerItemsOffset] instanceof Photo) {
+                updateAdapter = new PhotoRecyclerViewAdapter(responseArr);
             } else {
-                updateAdapter = new BaseRecyclerViewAdapter(objArr);
+                updateAdapter = new BaseRecyclerViewAdapter(responseArr);
             }
+
+            // Resetting Adapter
             mBaseRecyclerView.setAdapter(updateAdapter);
         } else {
             // TODO:log/snackbar dialog for error code/status, look into: .code, .errorBody, .message
@@ -134,8 +167,21 @@ public class BaseRecyclerViewFragment<E> extends Fragment implements Callback<Li
         // TODO:
     }
 
-    public void SetFilterViewVisible() {
-        // TODO: refactor radio group into here,
-        // TODO: this flag could indicate whether the RecyclerView's position 0 ViewHolder is replaced with the custom radio group to handle recyclerview adapter changes.
+    public void setInfoViewContent(Object infoViewContent) {
+        mInfoViewContent = infoViewContent;
     }
+
+    // TODO:
+    public void setFilterOptions(EnumSet<FilterOptions> options) {
+        mFilterViewOptions = options;
+    }
+
+    public void setFilterCheckedId(int checkedId) {
+        mFilterViewCheckedId = checkedId;
+    }
+
+    public int getFilterCheckedId() {
+        return mFilterViewCheckedId;
+    }
+
 }

@@ -3,10 +3,13 @@ package com.example.dylan.demoproject;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Post;
 
 public class StartActivityUtils {
 
+    // TODO: I think all startActivity methods should have Obj param instead of Id,
+    // TODO: so that we fully have the info for InfoVH, instead of having to make another API call with given ID.
     /**
      * Starts DisplayPostActivity.
      */
@@ -35,10 +38,12 @@ public class StartActivityUtils {
     /**
      * Starts DisplayAlbumActivity.
      */
-    public static void startDisplayAlbumActivity(Context context, int albumId) {
+    public static void startDisplayAlbumActivity(Context context, Album album) {
         Intent intent = new Intent(context, DisplayAlbumActivity.class);
 
-        intent.putExtra(context.getString(R.string.EXTRA_ALBUM_ID), albumId);
+        intent.putExtra(context.getString(R.string.EXTRA_USER_ID), album.getUserId());
+        intent.putExtra(context.getString(R.string.EXTRA_ALBUM_ID), album.getAlbumId());
+        intent.putExtra(context.getString(R.string.EXTRA_ALBUM_TITLE), album.getTitle());
 
         context.startActivity(intent);
     }

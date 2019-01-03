@@ -12,6 +12,13 @@ public class Album {
     @SerializedName("title")
     private String mTitle;
 
+    public Album(int userId, int albumId, String title) {
+        mUserId = userId;
+        mAlbumId = albumId;
+        mTitle = title;
+    }
+
+    @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("mUserId: " + mUserId + '\n');
@@ -21,7 +28,15 @@ public class Album {
         return sBuilder.toString();
     }
 
+    public int getUserId() {
+        return mUserId;
+    }
+
     public int getAlbumId() {
         return mAlbumId;
+    }
+
+    public String getTitle() {
+        return mTitle;
     }
 }

@@ -9,7 +9,10 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.dylan.demoproject.Model.FilterOptions;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
+
+import java.util.EnumSet;
 
 public class ListPostsActivity extends AppCompatActivity {
 
@@ -22,21 +25,12 @@ public class ListPostsActivity extends AppCompatActivity {
         BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
         // Show all Posts by default
         baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPosts());
+        EnumSet<FilterOptions> filterOptions = EnumSet.of(FilterOptions.POSTS, FilterOptions.COMMENTS, FilterOptions.USERS);
+        baseRecyclerViewFragment.setFilterOptions(filterOptions);
 
         configureToolbar();
         configureCreatePostFloatingButton();
     }
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        // seems after onCreate, also calls onResume, so updating listView twice.
-//        // TODO: fix copypasta. this functionality should also be in BaseRVFrag with a RefreshFloatingActionButton.
-//        // TODO: actually onResume seems useless, because the API doesn't actually modify the posts set, even though it accepts the POST request.
-//        BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_list_fragment);
-//        // Show all Posts by default
-//        baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPosts());
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -27,6 +27,7 @@ public class User {
     // TODO: object deserialization
     // private Company mCompany;
 
+    @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("mUserId: " + mUserId + '\n');
@@ -37,5 +38,9 @@ public class User {
         sBuilder.append("mWebsite: " + mWebsite + '\n');
 
         return sBuilder.toString();
+    }
+
+    public int getUserId() {
+        return mUserId;
     }
 }

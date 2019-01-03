@@ -21,15 +21,6 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
             mThumbnailView = view.findViewById(R.id.thumbnail_view);
         }
 
-//        /**
-//         * Called when a view has been clicked.
-//         *
-//         * @param v The view that was clicked.
-//         */
-//        @Override
-//        public void onClick(View v) {
-//            RecyclerView rv = (RecyclerView) v;
-//        }
     }
 
     public PhotoRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
@@ -40,34 +31,52 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
      * Create new ViewHolders (invoked by the layout manager)
      */
     @Override
-    public PhotoRecyclerViewAdapter.PhotoViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
-        final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.photo_view_holder, parent, false);
-        final Context context = parent.getContext();
+    public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
-        layout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                RecyclerView rv = (RecyclerView) parent;
-                int itemPosition = rv.getChildLayoutPosition(v);
-                Photo photo = (Photo) PhotoRecyclerViewAdapter.super.getObjects()[itemPosition];
-                String photoUrl = photo.getUrl();
-                StartActivityUtils.startDisplayPhotoActivity(context, photoUrl);
-            }
-        });
+        switch (viewType) {
+            case INFO_HOLDER_VIEW_TYPE:
+                return super.onCreateViewHolder(parent, viewType);
+            case FILTER_HOLDER_VIEW_TYPE:
+                return super.onCreateViewHolder(parent, viewType);
+            default:
+                final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.photo_view_holder, parent, false);
+                final Context context = parent.getContext();
 
-        return new PhotoRecyclerViewAdapter.PhotoViewHolder(layout);
+                layout.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        RecyclerView rv = (RecyclerView) parent;
+                        int itemPosition = rv.getChildLayoutPosition(v);
+                        Photo photo = (Photo) PhotoRecyclerViewAdapter.super.getItems()[itemPosition];
+                        String photoUrl = photo.getUrl();
+                        StartActivityUtils.startDisplayPhotoActivity(context, photoUrl);
+                    }
+                });
+
+                return new PhotoViewHolder(layout);
+        }
     }
 
     /**
      * Replace the contents of a ViewHolder (invoked by the layout manager)
      */
     @Override
-    public void onBindViewHolder(BaseViewHolder baseViewHolder, int position) {
-        super.onBindViewHolder(baseViewHolder, position);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
+        super.onBindViewHolder(viewHolder, position);
 
-        Photo photo = (Photo) getObjects()[position];
-        String thumbnailUrl = photo.getThumbnailUrl();
-        PhotoViewHolder photoViewHolder = (PhotoViewHolder) baseViewHolder;
-        Picasso.get().load(thumbnailUrl).into(photoViewHolder.mThumbnailView);
+        boolean infoOrFilterViewType = viewHolder.getItemViewType() == INFO_HOLDER_VIEW_TYPE || viewHolder.getItemViewType() == FILTER_HOLDER_VIEW_TYPE;
+        if (!infoOrFilterViewType) {
+            // Setup remaining PhotoViewHolders
+            Photo photo = (Photo) getItems()[position];
+            String thumbnailUrl = photo.getThumbnailUrl();
+            PhotoViewHolder photoViewHolder = (PhotoViewHolder) viewHolder;
+            Picasso.get()
+                    .load(thumbnailUrl)
+                    .resize(100, 100)
+                    .centerCrop()
+                    .placeholder(R.drawable.thumbnail_placeholder)
+                    .into(photoViewHolder.mThumbnailView);
+        }
     }
+
 }

@@ -18,6 +18,7 @@ public class Comment {
     @SerializedName("body")
     private String mBody;
 
+    @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("mPostId: " + mPostId + '\n');

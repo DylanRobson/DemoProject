@@ -37,10 +37,7 @@ public class CreatePostActivity extends AppCompatActivity implements Callback<Po
                 try {
                     final int userIdInt = Integer.parseInt(userIdText);
 
-                    Post post = new Post();
-                    post.setUserId(userIdInt);
-                    post.setTitle(postTitleText);
-                    post.setBody(postBodyText);
+                    Post post = new Post(userIdInt, -1, postTitleText, postBodyText);
 
                     Call<Post> apiCall = APIController.getApiInstance().createPost(post);
                     apiCall.enqueue(CreatePostActivity.this);

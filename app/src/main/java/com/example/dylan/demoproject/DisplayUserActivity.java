@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.example.dylan.demoproject.Model.FilterOptions;
 import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
+
+import java.util.EnumSet;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -30,33 +33,13 @@ public class DisplayUserActivity extends AppCompatActivity {
         mBaseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
         // Show Posts by user by default. This relies on the assumption that the Posts radio button is default selection.
         mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPostsForUser(userId));
-
-
-        RadioGroup filterUserContentRadioGroup = findViewById(R.id.filter_user_content_radio_group);
-        filterUserContentRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                // TODO: Change the RecyclerViewFragment being shown: either Posts, Comments, or Albums.
-                switch (checkedId) {
-                    case R.id.filter_posts_radio_button:
-                        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPostsForUser(userId));
-                        break;
-                    case R.id.filter_comments_radio_button:
-                        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listCommentsForUser(userId));
-                        break;
-                    case R.id.filter_albums_radio_button:
-                        mBaseRecyclerViewFragment.updateListView(APIController.getApiInstance().listAlbumsForUser(userId));
-                        break;
-                }
-            }
-        });
-
+        EnumSet<FilterOptions> filterOptions = EnumSet.of(FilterOptions.POSTS, FilterOptions.COMMENTS, FilterOptions.ALBUMS);
+        mBaseRecyclerViewFragment.setFilterOptions(filterOptions);
     }
 
+    // TODO: or instead of Callback to fetch User for userId, should just pass in intent extras for user...
     // TODO: impl. Callback<User> in this, for cleaner style.
     private void updateUserView(int userId) {
-        final TextView userTextView = findViewById(R.id.user_text_view);
-
         final Call<User> callUser = APIController.getApiInstance().getUser(userId);
 
         // posts.execute for sync.
@@ -67,7 +50,7 @@ public class DisplayUserActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (response.isSuccessful()) {
                     User user = response.body();
-                    userTextView.setText(user.toString());
+                    mBaseRecyclerViewFragment.setInfoViewContent(user);
                 } else {
                     // TODO:
                 }

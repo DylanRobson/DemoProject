@@ -1,51 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- TODO : Make ConstraintLayout like other activs. Better performance? -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".DisplayUserActivity">
-
-    <TextView
-        android:id="@+id/user_text_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
-        android:background="@color/design_default_color_primary"
-        android:padding="@dimen/text_margin"
-        android:text="TODO: DisplayUserActivity"/>
-
-    <!-- filter to select RecyclerView adapter via horizontal radio group-->
-    <RadioGroup
-        android:id="@+id/filter_user_content_radio_group"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <!--android:checkedButton="@+id/filter_posts_radio_button">-->
-        <RadioButton
-            android:id="@+id/filter_posts_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:checked="true"
-            android:text="POSTS"
-            android:padding="16dp"/>
-        <RadioButton
-            android:id="@+id/filter_comments_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:text="COMMENTS"
-            android:padding="16dp"/>
-        <RadioButton
-            android:id="@+id/filter_albums_radio_button"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:text="ALBUMS"
-            android:padding="16dp"/>
-    </RadioGroup>
 
     <fragment
         android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"

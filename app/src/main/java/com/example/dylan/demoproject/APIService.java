@@ -21,8 +21,11 @@ public interface APIService {
     @GET("posts")
     Call<List<Post>> listPosts();
 
-    // @GET("users")
-    // Call<List<User>> listUsers();
+    @GET("comments")
+    Call<List<Comment>> listComments();
+
+     @GET("users")
+     Call<List<User>> listUsers();
 
     @GET("albums")
     Call<List<Album>> listAlbums();
