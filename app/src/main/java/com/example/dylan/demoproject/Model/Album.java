@@ -21,9 +21,9 @@ public class Album {
     @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("mUserId: " + mUserId + '\n');
-        sBuilder.append("mAlbumId: " + mAlbumId + '\n');
-        sBuilder.append("mTitle: " + mTitle + '\n');
+        sBuilder.append("User ID: " + mUserId + '\n');
+        sBuilder.append("Album ID: " + mAlbumId + '\n');
+        sBuilder.append("Album Title: " + mTitle + '\n');
 
         return sBuilder.toString();
     }

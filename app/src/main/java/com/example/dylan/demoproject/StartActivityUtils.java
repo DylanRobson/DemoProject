@@ -5,6 +5,7 @@ import android.content.Intent;
 
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.View.AboutActivity;
 
 public class StartActivityUtils {
 
@@ -69,5 +70,11 @@ public class StartActivityUtils {
     }
 
     // TODO: startAboutActivity()
+    public static void startAboutActivity(Context context) {
+        Intent intent = new Intent(context, AboutActivity.class);
+
+        context.startActivity(intent);
+    }
+
     // TODO: startSettingsActivity()
 }

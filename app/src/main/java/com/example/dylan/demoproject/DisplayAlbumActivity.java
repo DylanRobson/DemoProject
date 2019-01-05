@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.dylan.demoproject.Controller.BaseRecyclerController;
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
@@ -21,9 +22,11 @@ public class DisplayAlbumActivity extends AppCompatActivity {
         final String albumTitle = intent.getStringExtra(getString(R.string.EXTRA_ALBUM_TITLE));
 
         BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
+        BaseRecyclerController baseRecyclerController = baseRecyclerViewFragment.getBaseRecyclerController();
+
+        baseRecyclerController.setSelectionDetail(new Album(userId, albumId, albumTitle));
         // Show Photos in the Album by default.
-        baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPhotosForAlbum(albumId));
-        baseRecyclerViewFragment.setInfoViewContent(new Album(userId, albumId, albumTitle));
+        baseRecyclerController.beginCall(API.getInstance().listPhotosForAlbum(albumId));
     }
 
 }

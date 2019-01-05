@@ -34,7 +34,7 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
         switch (viewType) {
-            case INFO_HOLDER_VIEW_TYPE:
+            case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);
             case FILTER_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);
@@ -64,7 +64,7 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position) {
         super.onBindViewHolder(viewHolder, position);
 
-        boolean infoOrFilterViewType = viewHolder.getItemViewType() == INFO_HOLDER_VIEW_TYPE || viewHolder.getItemViewType() == FILTER_HOLDER_VIEW_TYPE;
+        boolean infoOrFilterViewType = viewHolder.getItemViewType() == SELECTION_DETAIL_HOLDER_VIEW_TYPE || viewHolder.getItemViewType() == FILTER_HOLDER_VIEW_TYPE;
         if (!infoOrFilterViewType) {
             // Setup remaining PhotoViewHolders
             Photo photo = (Photo) getItems()[position];

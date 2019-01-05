@@ -23,7 +23,7 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
         switch (viewType) {
-            case INFO_HOLDER_VIEW_TYPE:
+            case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);
             case FILTER_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);

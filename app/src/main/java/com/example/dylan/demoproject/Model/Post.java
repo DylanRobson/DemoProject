@@ -25,20 +25,20 @@ public class Post {
     @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("mUserId: " + mUserId + '\n');
+        sBuilder.append("User ID: " + mUserId + '\n');
         sBuilder.append(getInfoString());
 
         return sBuilder.toString();
     }
 
     /**
-     * Same as toString except excludes mUserId, so that InfoViewHolder can display User ID in separate TextView.
+     * Same as toString except excludes mUserId, so that SelectionDetailViewHolder can display User ID in separate TextView.
      */
     public String getInfoString() {
         StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("mPostId: " + mPostId + '\n');
-        sBuilder.append("mTitle: " + mTitle + '\n');
-        sBuilder.append("mBody: " + mBody + '\n');
+        sBuilder.append("Post ID: " + mPostId + '\n');
+        sBuilder.append("Post Title: " + mTitle + '\n');
+        sBuilder.append("Post Body: " + mBody + '\n');
 
         return sBuilder.toString();
     }
@@ -59,15 +59,4 @@ public class Post {
         return mBody;
     }
 
-    public void setUserId(int userId) {
-        mUserId = userId;
-    }
-
-    public void setTitle(String title) {
-        mTitle = title;
-    }
-
-    public void setBody(String body) {
-        mBody = body;
-    }
 }

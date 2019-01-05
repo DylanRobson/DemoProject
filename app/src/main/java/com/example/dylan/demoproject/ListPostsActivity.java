@@ -23,10 +23,10 @@ public class ListPostsActivity extends AppCompatActivity {
         setTitle("ListPostsActivity");
 
         BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
-        // Show all Posts by default
-        baseRecyclerViewFragment.updateListView(APIController.getApiInstance().listPosts());
         EnumSet<FilterOptions> filterOptions = EnumSet.of(FilterOptions.POSTS, FilterOptions.COMMENTS, FilterOptions.USERS);
-        baseRecyclerViewFragment.setFilterOptions(filterOptions);
+        baseRecyclerViewFragment.getBaseRecyclerController().setFilterOptionsSet(filterOptions);
+        // Show all Posts by default
+        baseRecyclerViewFragment.getBaseRecyclerController().beginCall(API.getInstance().listPosts());
 
         configureToolbar();
         configureCreatePostFloatingButton();
@@ -47,7 +47,8 @@ public class ListPostsActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            StartActivityUtils.startAboutActivity(this);
             return true;
         }
 

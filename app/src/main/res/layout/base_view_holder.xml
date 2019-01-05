@@ -5,12 +5,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content" >
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
+
     <TextView
         android:id="@+id/base_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
         android:padding="16dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="8dp" />
 
 </LinearLayout>

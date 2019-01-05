@@ -6,16 +6,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * APIService singleton object. //TODO: verify singleton style/use case.
  */
-public class APIController {
+public class API {
 
     private static final String API_BASE_URL = "https://jsonplaceholder.typicode.com";
-    private static APIService mAPI;
+    private static APIService sAPI;
 
-    public static APIService getApiInstance() {
-        if (mAPI == null) {
-            mAPI = configureAPI(API_BASE_URL);
+    public static APIService getInstance() {
+        if (sAPI == null) {
+            sAPI = configureAPI(API_BASE_URL);
         }
-        return mAPI;
+        return sAPI;
     }
 
     /**

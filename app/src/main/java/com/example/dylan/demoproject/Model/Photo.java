@@ -21,11 +21,11 @@ public class Photo {
     @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("mAlbumId: " + mAlbumId + '\n');
-        sBuilder.append("mPhotoId: " + mPhotoId + '\n');
-        sBuilder.append("mTitle: " + mTitle + '\n');
-        sBuilder.append("mUrl: " + mUrl + '\n');
-        sBuilder.append("mThumbnailUrl: " + mThumbnailUrl + '\n');
+        sBuilder.append("Album ID: " + mAlbumId + '\n');
+        sBuilder.append("Photo ID: " + mPhotoId + '\n');
+        sBuilder.append("Photo Title: " + mTitle + '\n');
+        sBuilder.append("URL: " + mUrl + '\n');
+        sBuilder.append("Thumbnail URL: " + mThumbnailUrl + '\n');
 
         return sBuilder.toString();
     }

@@ -39,7 +39,7 @@ public class CreatePostActivity extends AppCompatActivity implements Callback<Po
 
                     Post post = new Post(userIdInt, -1, postTitleText, postBodyText);
 
-                    Call<Post> apiCall = APIController.getApiInstance().createPost(post);
+                    Call<Post> apiCall = API.getInstance().createPost(post);
                     apiCall.enqueue(CreatePostActivity.this);
                 } catch (NumberFormatException nfe) {
                     // TODO

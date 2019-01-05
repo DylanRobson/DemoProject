@@ -21,11 +21,11 @@ public class Comment {
     @Override
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
-        sBuilder.append("mPostId: " + mPostId + '\n');
-        sBuilder.append("mCommentId: " + mCommentId + '\n');
-        sBuilder.append("mName: " + mName + '\n');
-        sBuilder.append("mEmail: " + mEmail + '\n');
-        sBuilder.append("mBody: " + mBody + '\n');
+        sBuilder.append("Post ID: " + mPostId + '\n');
+        sBuilder.append("Comment ID: " + mCommentId + '\n');
+        sBuilder.append("Comment Name: " + mName + '\n');
+        sBuilder.append("Commenter Email: " + mEmail + '\n');
+        sBuilder.append("Comment Body: " + mBody + '\n');
 
         return sBuilder.toString();
     }

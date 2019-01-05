@@ -33,9 +33,10 @@
         android:id="@+id/info_body_text_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autoSizeTextType="uniform"
         android:background="#ffffff"
         android:padding="16dp" />
+    <!--android:autoSizeTextType="uniform"-->
+
 
 
 </LinearLayout>
