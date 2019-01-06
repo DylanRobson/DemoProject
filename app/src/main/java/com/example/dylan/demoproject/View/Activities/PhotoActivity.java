@@ -1,13 +1,14 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.View.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.example.dylan.demoproject.R;
 import com.squareup.picasso.Picasso;
 
-public class DisplayPhotoActivity extends AppCompatActivity {
+public class PhotoActivity extends AppCompatActivity {
 
     // TODO: Share/download image features.
 
@@ -15,7 +16,7 @@ public class DisplayPhotoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_photo);
-        setTitle("DisplayPhotoActivity");
+        setTitle("PhotoActivity");
 
         ImageView imageView = findViewById(R.id.imageView);
 

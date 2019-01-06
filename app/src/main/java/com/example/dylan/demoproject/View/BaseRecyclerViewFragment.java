@@ -15,10 +15,7 @@ import com.example.dylan.demoproject.Controller.AdapterChangedListener;
 import com.example.dylan.demoproject.Controller.BaseRecyclerController;
 import com.example.dylan.demoproject.Controller.RetrofitErrorListener;
 import com.example.dylan.demoproject.R;
-
-import java.util.List;
-
-import retrofit2.Call;
+import com.example.dylan.demoproject.View.Adapters.BaseRecyclerViewAdapter;
 
 public class BaseRecyclerViewFragment extends Fragment implements AdapterChangedListener, RetrofitErrorListener {
 

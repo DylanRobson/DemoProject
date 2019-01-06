@@ -1,6 +1,6 @@
 package com.example.dylan.demoproject.Model;
 
-import com.example.dylan.demoproject.UriUtils;
+import com.example.dylan.demoproject.Utils.UriUtils;
 import com.google.gson.annotations.SerializedName;
 
 public class User {

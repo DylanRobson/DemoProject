@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject.View;
+package com.example.dylan.demoproject.View.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

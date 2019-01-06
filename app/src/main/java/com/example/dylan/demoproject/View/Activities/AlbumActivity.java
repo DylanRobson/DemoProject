@@ -1,20 +1,22 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.View.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.dylan.demoproject.Controller.BaseRecyclerController;
+import com.example.dylan.demoproject.Model.API;
 import com.example.dylan.demoproject.Model.Album;
+import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
-public class DisplayAlbumActivity extends AppCompatActivity {
+public class AlbumActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_album);
-        setTitle("DisplayAlbumActivity");
+        setTitle("AlbumActivity");
 
         Intent intent = getIntent();
         final int userId = intent.getIntExtra(getString(R.string.EXTRA_USER_ID), -1);

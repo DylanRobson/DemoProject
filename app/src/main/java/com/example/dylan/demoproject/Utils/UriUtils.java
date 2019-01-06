@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.Utils;
 
 import android.net.Uri;
 import android.telephony.PhoneNumberUtils;
@@ -6,6 +6,7 @@ import android.telephony.PhoneNumberUtils;
 public class UriUtils {
 
     public static String getWebsiteUrl(String uriString) {
+
         Uri uri = Uri.parse(uriString);
         if (uri.getScheme() == null) {
             uri = uri.buildUpon().scheme("http").build();

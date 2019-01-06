@@ -1,21 +1,27 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.Utils;
 
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.dylan.demoproject.View.Activities.AlbumActivity;
+import com.example.dylan.demoproject.View.Activities.CreatePostActivity;
+import com.example.dylan.demoproject.View.Activities.PhotoActivity;
+import com.example.dylan.demoproject.View.Activities.PostActivity;
+import com.example.dylan.demoproject.View.Activities.UserActivity;
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Post;
-import com.example.dylan.demoproject.View.AboutActivity;
+import com.example.dylan.demoproject.R;
+import com.example.dylan.demoproject.View.Activities.AboutActivity;
 
 public class StartActivityUtils {
 
     // TODO: I think all startActivity methods should have Obj param instead of Id,
     // TODO: so that we fully have the info for InfoVH, instead of having to make another API call with given ID.
     /**
-     * Starts DisplayPostActivity.
+     * Starts PostActivity.
      */
-    public static void startDisplayPostActivity(Context context, Post post) {
-        Intent intent = new Intent(context, DisplayPostActivity.class);
+    public static void startPostActivity(Context context, Post post) {
+        Intent intent = new Intent(context, PostActivity.class);
 
         intent.putExtra(context.getString(R.string.EXTRA_USER_ID), post.getUserId());
         intent.putExtra(context.getString(R.string.EXTRA_POST_ID), post.getPostId());
@@ -26,10 +32,10 @@ public class StartActivityUtils {
     }
 
     /**
-     * Starts DisplayUserActivity.
+     * Starts UserActivity.
      */
-    public static void startDisplayUserActivity(Context context, int userId) {
-        Intent intent = new Intent(context, DisplayUserActivity.class);
+    public static void startUserActivity(Context context, int userId) {
+        Intent intent = new Intent(context, UserActivity.class);
 
         intent.putExtra(context.getString(R.string.EXTRA_USER_ID), userId);
 
@@ -37,10 +43,10 @@ public class StartActivityUtils {
     }
 
     /**
-     * Starts DisplayAlbumActivity.
+     * Starts AlbumActivity.
      */
-    public static void startDisplayAlbumActivity(Context context, Album album) {
-        Intent intent = new Intent(context, DisplayAlbumActivity.class);
+    public static void startAlbumActivity(Context context, Album album) {
+        Intent intent = new Intent(context, AlbumActivity.class);
 
         intent.putExtra(context.getString(R.string.EXTRA_USER_ID), album.getUserId());
         intent.putExtra(context.getString(R.string.EXTRA_ALBUM_ID), album.getAlbumId());
@@ -50,10 +56,10 @@ public class StartActivityUtils {
     }
 
     /**
-     * Starts DisplayPhotoActivity.
+     * Starts PhotoActivity.
      */
-    public static void startDisplayPhotoActivity(Context context, String photoUrl) {
-        Intent intent = new Intent(context, DisplayPhotoActivity.class);
+    public static void startPhotoActivity(Context context, String photoUrl) {
+        Intent intent = new Intent(context, PhotoActivity.class);
 
         intent.putExtra(context.getString(R.string.EXTRA_PHOTO_URL), photoUrl);
 
@@ -69,12 +75,13 @@ public class StartActivityUtils {
         context.startActivity(intent);
     }
 
-    // TODO: startAboutActivity()
+    /**
+     * Starts AboutActivity.
+     */
     public static void startAboutActivity(Context context) {
         Intent intent = new Intent(context, AboutActivity.class);
 
         context.startActivity(intent);
     }
 
-    // TODO: startSettingsActivity()
 }

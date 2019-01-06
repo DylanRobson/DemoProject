@@ -1,13 +1,15 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.View.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.dylan.demoproject.Model.API;
 import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
-public class DisplayPostActivity extends AppCompatActivity {
+public class PostActivity extends AppCompatActivity {
 
     // TODO: private Button mPostCommentButton; // To POST new comment.
 
@@ -15,7 +17,7 @@ public class DisplayPostActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_post);
-        setTitle("DisplayPostActivity");
+        setTitle("PostActivity");
 
         Intent intent = getIntent();
         final int userId = intent.getIntExtra(getString(R.string.EXTRA_USER_ID), -1);

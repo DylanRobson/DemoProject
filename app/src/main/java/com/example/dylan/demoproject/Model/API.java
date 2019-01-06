@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.Model;
 
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

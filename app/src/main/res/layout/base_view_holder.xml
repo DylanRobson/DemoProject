@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:autoSizeTextType="uniform"
-        android:background="@color/colorPrimary"
+        android:background="@color/lightGray"
         android:padding="16dp" />
 
     <Space

@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.View.Activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -9,21 +9,24 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.example.dylan.demoproject.Model.API;
 import com.example.dylan.demoproject.Model.FilterOptions;
+import com.example.dylan.demoproject.R;
+import com.example.dylan.demoproject.Utils.StartActivityUtils;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
 import java.util.EnumSet;
 
-public class ListPostsActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        setTitle("ListPostsActivity");
+        setTitle("MainActivity");
 
         BaseRecyclerViewFragment baseRecyclerViewFragment = (BaseRecyclerViewFragment) getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
-        EnumSet<FilterOptions> filterOptions = EnumSet.of(FilterOptions.POSTS, FilterOptions.COMMENTS, FilterOptions.USERS);
+        EnumSet<FilterOptions> filterOptions = EnumSet.of(FilterOptions.POSTS, FilterOptions.COMMENTS, FilterOptions.ALBUMS, FilterOptions.USERS);
         baseRecyclerViewFragment.getBaseRecyclerController().setFilterOptionsSet(filterOptions);
         // Show all Posts by default
         baseRecyclerViewFragment.getBaseRecyclerController().beginCall(API.getInstance().listPosts());

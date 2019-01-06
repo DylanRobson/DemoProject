@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".ListPostsActivity"
+    tools:context=".View.Activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
     <!-- TODO: move fragment directly into activity_main -->

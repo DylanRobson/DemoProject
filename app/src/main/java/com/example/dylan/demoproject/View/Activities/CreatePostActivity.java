@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.View.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -6,7 +6,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.dylan.demoproject.Model.API;
 import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.R;
+import com.example.dylan.demoproject.Utils.StartActivityUtils;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,7 +64,7 @@ public class CreatePostActivity extends AppCompatActivity implements Callback<Po
     public void onResponse(Call<Post> call, Response<Post> response) {
         if (response.isSuccessful()) {
             Post post = response.body();
-            StartActivityUtils.startDisplayPostActivity(this, post);
+            StartActivityUtils.startPostActivity(this, post);
             finish();
         } else {
             // TODO:

@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject.View;
+package com.example.dylan.demoproject.View.Adapters;
 
 import android.content.Context;
 import android.support.annotation.Nullable;
@@ -13,13 +13,14 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.example.dylan.demoproject.API;
+import com.example.dylan.demoproject.Model.API;
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.FilterOptions;
 import com.example.dylan.demoproject.Model.Post;
 import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.R;
-import com.example.dylan.demoproject.StartActivityUtils;
+import com.example.dylan.demoproject.Utils.StartActivityUtils;
+import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
 import java.util.EnumSet;
 
@@ -42,9 +43,9 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
      * SelectionDetailViewHolder contains multiple TextViews for a row within the RecyclerView.
      * The multiple TextViews display the details (metadata) for the item selected in the previous Activity.
      *
-     * e.g. for the DisplayPostActivity (where the user selected a Post item in the previous Activity),
+     * e.g. for the PostActivity (where the user selected a Post item in the previous Activity),
      * the SelectionDetailViewHolder will contain TextViews for Post's fields: userId, postId, postTitle, and postBody.
-     * Then, from index 1 onwards DisplayPostActivity displays BaseViewHolders for the Post's Comments.
+     * Then, from index 1 onwards PostActivity displays BaseViewHolders for the Post's Comments.
      */
     public static class SelectionDetailViewHolder extends RecyclerView.ViewHolder {
         private TextView mHeaderTextView;
@@ -83,7 +84,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 mLinkTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        StartActivityUtils.startDisplayUserActivity(mContext, infoPost.getUserId());
+                        StartActivityUtils.startUserActivity(mContext, infoPost.getUserId());
                     }
                 });
                 mBodyTextView.setText(infoPost.getInfoString());

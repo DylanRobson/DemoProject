@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject;
+package com.example.dylan.demoproject.Model;
 
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.Comment;

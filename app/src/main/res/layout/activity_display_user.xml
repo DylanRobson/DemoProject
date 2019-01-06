@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DisplayUserActivity">
+    tools:context=".View.Activities.UserActivity">
 
     <fragment
         android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"

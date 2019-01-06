@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject.View;
+package com.example.dylan.demoproject.View.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -6,13 +6,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.dylan.demoproject.Model.Post;
+import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.R;
-import com.example.dylan.demoproject.StartActivityUtils;
+import com.example.dylan.demoproject.Utils.StartActivityUtils;
 
-public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
+public class AlbumRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 
-    public PostRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
+    public AlbumRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
         super(objects);
     }
 
@@ -36,8 +36,8 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
                     public void onClick(View v) {
                         RecyclerView rv = (RecyclerView) parent;
                         int itemPosition = rv.getChildLayoutPosition(v);
-                        Post post = (Post) PostRecyclerViewAdapter.super.getItems()[itemPosition];
-                        StartActivityUtils.startDisplayPostActivity(context, post);
+                        Album album = (Album) AlbumRecyclerViewAdapter.super.getItems()[itemPosition];
+                        StartActivityUtils.startAlbumActivity(context, album);
                     }
                 });
 

@@ -1,4 +1,4 @@
-package com.example.dylan.demoproject.View;
+package com.example.dylan.demoproject.View.Adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -9,7 +9,7 @@ import android.widget.ImageView;
 
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.R;
-import com.example.dylan.demoproject.StartActivityUtils;
+import com.example.dylan.demoproject.Utils.StartActivityUtils;
 import com.squareup.picasso.Picasso;
 
 public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
@@ -49,7 +49,7 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
                         int itemPosition = rv.getChildLayoutPosition(v);
                         Photo photo = (Photo) PhotoRecyclerViewAdapter.super.getItems()[itemPosition];
                         String photoUrl = photo.getUrl();
-                        StartActivityUtils.startDisplayPhotoActivity(context, photoUrl);
+                        StartActivityUtils.startPhotoActivity(context, photoUrl);
                     }
                 });
 

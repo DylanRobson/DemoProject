@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ListPostsActivity"
+            android:name=".View.Activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,12 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".DisplayPostActivity" />
-        <activity android:name=".DisplayUserActivity" />
-        <activity android:name=".DisplayAlbumActivity" />
-        <activity android:name=".DisplayPhotoActivity" />
-        <activity android:name=".CreatePostActivity" />
-        <activity android:name=".View.AboutActivity"></activity>
+        <activity android:name=".View.Activities.PostActivity" />
+        <activity android:name=".View.Activities.UserActivity" />
+        <activity android:name=".View.Activities.AlbumActivity" />
+        <activity android:name=".View.Activities.PhotoActivity" />
+        <activity android:name=".View.Activities.CreatePostActivity" />
+        <activity android:name=".View.Activities.AboutActivity"></activity>
     </application>
 
 </manifest>
