@@ -61,9 +61,9 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             mContext = context;
         }
 
-        public void setContent(@Nullable Object infoContent) {
+        public void setDetail(@Nullable Object selectionDetail) {
 
-            if (infoContent == null) {
+            if (selectionDetail == null) {
                 // <editor-fold defaultstate="collapsed" desc="Hide SelectionDetailViewHolder when infoContent null">
                 /**
                  * View.setVisibility(View.GONE) hides the InfoVH, but whitespace remains in RecyclerView.
@@ -76,11 +76,11 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 v.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
             }
 
-            mHeaderTextView.setText("* ** *** SelectionDetailViewHolder *** ** *\n");
-            if (infoContent instanceof Post) {
-                final Post infoPost = (Post) infoContent;
+            mHeaderTextView.setText("Selection Details\n");
+            if (selectionDetail instanceof Post) {
+                final Post infoPost = (Post) selectionDetail;
                 mHeaderTextView.setText(mHeaderTextView.getText() + "(Post)\n");
-                mLinkTextView.setText("User ID: " + infoPost.getUserId() + "\t\t(Link) -->");
+                mLinkTextView.setText("User ID: " + infoPost.getUserId() + "\t\t(View Profile)");
                 mLinkTextView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -88,12 +88,19 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                     }
                 });
                 mBodyTextView.setText(infoPost.getInfoString());
-            } else if (infoContent instanceof Album) {
-                final Album infoAlbum = (Album) infoContent;
+            } else if (selectionDetail instanceof Album) {
+                final Album infoAlbum = (Album) selectionDetail;
                 mHeaderTextView.setText(mHeaderTextView.getText() + "(Album)\n");
+                mLinkTextView.setText("User ID: " + infoAlbum.getUserId() + "\t\t(View Profile)");
+                mLinkTextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        StartActivityUtils.startUserActivity(mContext, infoAlbum.getUserId());
+                    }
+                });
                 mBodyTextView.setText(infoAlbum.toString());
-            } else if (infoContent instanceof User) {
-                final User infoUser = (User) infoContent;
+            } else if (selectionDetail instanceof User) {
+                final User infoUser = (User) selectionDetail;
                 mHeaderTextView.setText(mHeaderTextView.getText() + "(User)\n");
                 // nothing for linkText?
                 mBodyTextView.setLinksClickable(true);
@@ -103,7 +110,6 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         }
     }
 
-    /** TODO: FilterViewHolder (RadioGroup) */
     /**
      * FilterViewHolder contains the RadioGroup to filter the Adapter's items.
      */
@@ -178,7 +184,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             }
             // </editor-fold>
 
-            mFilterTextView.setText("* ** *** FilterViewHolder *** ** *\n" + options.toString());
+            mFilterTextView.setText("Filter By");
 
             // <editor-fold defaultstate="collapsed" desc="Set RadioGroup.OnCheckedChangeListener">
             if (infoItem instanceof User) {
@@ -292,7 +298,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
                 // Setup SelectionDetailViewHolder
                 SelectionDetailViewHolder selectionDetailViewHolder = (SelectionDetailViewHolder) viewHolder;
-                selectionDetailViewHolder.setContent(mAdapterItems[position]);
+                selectionDetailViewHolder.setDetail(mAdapterItems[position]);
                 break;
             case FILTER_HOLDER_VIEW_TYPE:
                 // Setup FilterViewHolder

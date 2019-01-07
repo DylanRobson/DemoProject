@@ -116,7 +116,7 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
 
     /**
      * Add Adapter header Items: SelectionDetailObject and FilterOptionsSet.
-     * For {@link BaseRecyclerViewAdapter.SelectionDetailViewHolder#setContent(Object)}
+     * For {@link BaseRecyclerViewAdapter.SelectionDetailViewHolder#setDetail(Object)}
      * And {@link BaseRecyclerViewAdapter.FilterViewHolder#setOptions(EnumSet, Object)}
      */
     private Object[] addAdapterHeaderItems(List<Object> responseItems) {

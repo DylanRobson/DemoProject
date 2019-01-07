@@ -58,7 +58,8 @@ public class BaseRecyclerViewFragment extends Fragment implements AdapterChanged
                 super.onScrolled(recyclerView, dx, dy);
 
                 boolean scrollUp = dy < 0;
-                if (scrollUp) {
+                boolean canScrollUp = mBaseRecyclerView.canScrollVertically(-1);
+                if (scrollUp && canScrollUp) {
                     mRefreshFloatingButton.show();
                 } else {
                     mRefreshFloatingButton.hide();

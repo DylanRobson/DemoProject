@@ -1,10 +1,21 @@
 <resources>
     <string name="app_name">DemoProject</string>
     <string name="action_about">About</string>
+
+    <string name="about_attributions">Attributions</string>
+    <string name="about_html">
+        <![CDATA[<p>
+        <a href="https://jsonplaceholder.typicode.com/">JsonPlaceHolder - mock REST API - by Typicode.</a><br><br>
+        <a href="https://github.com/square/picasso">Picasso - Image downloading/caching library - by Square, Inc.</a><br><br>
+        <a href="https://github.com/square/retrofit">Retrofit2 - HTTP client - by Square, Inc.</a><br><br>
+        <a href="https://github.com/google/gson">GSON - Java JSON serialization/deserialization - by Google.</a><br><br>
+        <a href="https://github.com/square/retrofit/tree/master/retrofit-converters/gson">GSON Converter - to use GSON with Retrofit - by Square, Inc.</a><br><br>
+        </p>]]>
+    </string>
+
     <!--<string name="API_BASE_URL">https://jsonplaceholder.typicode.com</string>-->
     <string name="EXTRA_ALBUM_ID">com.example.dylan.demoproject.EXTRA_ALBUM_ID</string>
     <string name="EXTRA_ALBUM_TITLE">com.example.dylan.demoproject.EXTRA_ALBUM_TITLE</string>
-
     <string name="EXTRA_USER_ID">com.example.dylan.demoproject.EXTRA_USER_ID</string>
     <string name="EXTRA_POST_ID">com.example.dylan.demoproject.EXTRA_POST_ID</string>
     <string name="EXTRA_POST_TITLE">com.example.dylan.demoproject.EXTRA_POST_TITLE</string>
