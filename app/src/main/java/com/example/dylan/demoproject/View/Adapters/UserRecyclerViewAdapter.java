@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
+import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
 
 public class UserRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 

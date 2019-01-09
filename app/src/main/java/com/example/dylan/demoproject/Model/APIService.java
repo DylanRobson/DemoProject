@@ -30,12 +30,10 @@ public interface APIService {
     @GET("albums")
     Call<List<Album>> listAlbums();
 
-    // TODO: The API doesn't work correctly for this route, it lists ALL comments, unassociated to postId. Using query postId works properly.
-//    @GET("posts/{postId}/comments")
-//    Call<List<Comment>> listCommentsForPost(@Path("postId") int postId);
-
-    @GET("albums/{albumId}/photos")
-    Call<List<Photo>> listPhotosForAlbum(@Path("albumId") int albumId);
+    //region List GET requests for queried Album id...
+    @GET("photos")
+    Call<List<Photo>> listPhotosForAlbum(@Query("albumId") int albumId);
+    //endregion
 
     //region List GET requests for queried Post id...
     @GET("comments")

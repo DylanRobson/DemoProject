@@ -1,6 +1,7 @@
 package com.example.dylan.demoproject.Controller;
 
 import com.example.dylan.demoproject.Model.Album;
+import com.example.dylan.demoproject.Model.Comment;
 import com.example.dylan.demoproject.Model.FilterOptions;
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.Model.Post;
@@ -8,6 +9,7 @@ import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.View.Adapters.AlbumRecyclerViewAdapter;
 import com.example.dylan.demoproject.View.Adapters.BaseRecyclerViewAdapter;
+import com.example.dylan.demoproject.View.Adapters.CommentRecyclerViewAdapter;
 import com.example.dylan.demoproject.View.Adapters.PhotoRecyclerViewAdapter;
 import com.example.dylan.demoproject.View.Adapters.PostRecyclerViewAdapter;
 import com.example.dylan.demoproject.View.Adapters.UserRecyclerViewAdapter;
@@ -116,8 +118,8 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
 
     /**
      * Add Adapter header Items: SelectionDetailObject and FilterOptionsSet.
-     * For {@link BaseRecyclerViewAdapter.SelectionDetailViewHolder#setDetail(Object)}
-     * And {@link BaseRecyclerViewAdapter.FilterViewHolder#setOptions(EnumSet, Object)}
+     * For {@link com.example.dylan.demoproject.View.ViewHolders.SelectionDetailViewHolder#setDetail(Object)}
+     * And {@link com.example.dylan.demoproject.View.ViewHolders.FilterViewHolder#setOptions(EnumSet, Object)}
      */
     private Object[] addAdapterHeaderItems(List<Object> responseItems) {
 
@@ -142,6 +144,8 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
             return new PhotoRecyclerViewAdapter(adapterItems);
         } else if (baseItem instanceof User) {
            return new UserRecyclerViewAdapter(adapterItems);
+        } else if (baseItem instanceof Comment) {
+            return new CommentRecyclerViewAdapter(adapterItems);
         }
 
         return new BaseRecyclerViewAdapter(adapterItems);

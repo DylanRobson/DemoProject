@@ -9,6 +9,9 @@ import android.view.ViewGroup;
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
+import com.example.dylan.demoproject.View.ViewHolders.AlbumSelectionDetailViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.UserSelectionDetailViewHolder;
 
 public class AlbumRecyclerViewAdapter extends BaseRecyclerViewAdapter {
 
@@ -22,14 +25,18 @@ public class AlbumRecyclerViewAdapter extends BaseRecyclerViewAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
+        final Context context = parent.getContext();
+        final LayoutInflater layoutInflater = LayoutInflater.from(context);
+
+        View layout;
         switch (viewType) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
-                return super.onCreateViewHolder(parent, viewType);
+                layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
+                return new UserSelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);
             default:
-                final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.base_view_holder, parent, false);
-                final Context context = parent.getContext();
+                layout = layoutInflater.inflate(R.layout.base_view_holder, parent, false);
 
                 layout.setOnClickListener(new View.OnClickListener() {
                     @Override

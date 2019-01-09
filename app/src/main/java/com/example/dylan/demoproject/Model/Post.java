@@ -26,7 +26,7 @@ public class Post {
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("User ID: " + mUserId + '\n');
-        sBuilder.append(getInfoString());
+        sBuilder.append(getDetailString());
 
         return sBuilder.toString();
     }
@@ -34,7 +34,7 @@ public class Post {
     /**
      * Same as toString except excludes mUserId, so that SelectionDetailViewHolder can display User ID in separate TextView.
      */
-    public String getInfoString() {
+    public String getDetailString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("Post ID: " + mPostId + '\n');
         sBuilder.append("Post Title: " + mTitle + '\n');

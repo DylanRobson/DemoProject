@@ -29,4 +29,8 @@ public class Comment {
 
         return sBuilder.toString();
     }
+
+    public int getPostId() {
+        return mPostId;
+    }
 }

@@ -30,6 +30,10 @@ public class Photo {
         return sBuilder.toString();
     }
 
+    public int getAlbumId() {
+        return mAlbumId;
+    }
+
     public String getUrl() {
         return mUrl;
     }

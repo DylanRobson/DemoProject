@@ -9,6 +9,7 @@ import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -21,226 +22,13 @@ import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
 import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
+import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.FilterViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.SelectionDetailViewHolder;
 
 import java.util.EnumSet;
 
 public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
-
-    /**
-     * BaseViewHolder contains a single TextView for a row within the RecyclerView.
-     * The single TextView will display the toString of the contained Object.
-     */
-    public static class BaseViewHolder extends RecyclerView.ViewHolder {
-        public TextView mTextView;
-        public BaseViewHolder(View view) {
-            super(view);
-            mTextView = view.findViewById(R.id.base_text_view);
-        }
-    }
-
-    /** TODO: SelectionDetailViewHolder (metadata) */
-    /**
-     * SelectionDetailViewHolder contains multiple TextViews for a row within the RecyclerView.
-     * The multiple TextViews display the details (metadata) for the item selected in the previous Activity.
-     *
-     * e.g. for the PostActivity (where the user selected a Post item in the previous Activity),
-     * the SelectionDetailViewHolder will contain TextViews for Post's fields: userId, postId, postTitle, and postBody.
-     * Then, from index 1 onwards PostActivity displays BaseViewHolders for the Post's Comments.
-     */
-    public static class SelectionDetailViewHolder extends RecyclerView.ViewHolder {
-        private TextView mHeaderTextView;
-        private TextView mLinkTextView;
-        private TextView mBodyTextView;
-        private Context mContext;
-
-        public SelectionDetailViewHolder(Context context, View view) {
-            super(view);
-            mHeaderTextView = view.findViewById(R.id.info_text_view);
-            mLinkTextView = view.findViewById(R.id.info_link_text_view);
-            mBodyTextView = view.findViewById(R.id.info_body_text_view);
-            mContext = context;
-        }
-
-        public void setDetail(@Nullable Object selectionDetail) {
-
-            if (selectionDetail == null) {
-                // <editor-fold defaultstate="collapsed" desc="Hide SelectionDetailViewHolder when infoContent null">
-                /**
-                 * View.setVisibility(View.GONE) hides the InfoVH, but whitespace remains in RecyclerView.
-                 * Remove the RecyclerView whitespace by setting height 0.
-                 * @see: <a href="https://stackoverflow.com/a/46342024"/>
-                 */
-                // </editor-fold>
-                View v = (View) mHeaderTextView.getParent();
-                v.setVisibility(View.GONE);
-                v.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
-            }
-
-            mHeaderTextView.setText("Selection Details\n");
-            if (selectionDetail instanceof Post) {
-                final Post infoPost = (Post) selectionDetail;
-                mHeaderTextView.setText(mHeaderTextView.getText() + "(Post)\n");
-                mLinkTextView.setText("User ID: " + infoPost.getUserId() + "\t\t(View Profile)");
-                mLinkTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        StartActivityUtils.startUserActivity(mContext, infoPost.getUserId());
-                    }
-                });
-                mBodyTextView.setText(infoPost.getInfoString());
-            } else if (selectionDetail instanceof Album) {
-                final Album infoAlbum = (Album) selectionDetail;
-                mHeaderTextView.setText(mHeaderTextView.getText() + "(Album)\n");
-                mLinkTextView.setText("User ID: " + infoAlbum.getUserId() + "\t\t(View Profile)");
-                mLinkTextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        StartActivityUtils.startUserActivity(mContext, infoAlbum.getUserId());
-                    }
-                });
-                mBodyTextView.setText(infoAlbum.toString());
-            } else if (selectionDetail instanceof User) {
-                final User infoUser = (User) selectionDetail;
-                mHeaderTextView.setText(mHeaderTextView.getText() + "(User)\n");
-                // nothing for linkText?
-                mBodyTextView.setLinksClickable(true);
-                mBodyTextView.setMovementMethod(LinkMovementMethod.getInstance());
-                mBodyTextView.setText(Html.fromHtml(infoUser.getHtmlString()));
-            }
-        }
-    }
-
-    /**
-     * FilterViewHolder contains the RadioGroup to filter the Adapter's items.
-     */
-    public static class FilterViewHolder extends RecyclerView.ViewHolder {
-        private TextView mFilterTextView;
-        private RadioGroup mRadioGroup;  // TODO: remove?
-
-        private RadioButton mPostsButton;
-        private RadioButton mCommentsButton;
-        private RadioButton mAlbumsButton;
-        private RadioButton mUsersButton;
-
-        private BaseRecyclerViewFragment mParentFragment;
-
-        public FilterViewHolder(Context context, View view) {
-            super(view);
-            mFilterTextView = view.findViewById(R.id.filter_text_view);
-            mRadioGroup = view.findViewById(R.id.filter_radio_group);
-
-            mPostsButton = mRadioGroup.findViewById(R.id.filter_posts_radio_button);
-            mCommentsButton = mRadioGroup.findViewById(R.id.filter_comments_radio_button);
-            mAlbumsButton = mRadioGroup.findViewById(R.id.filter_albums_radio_button);
-            mUsersButton = mRadioGroup.findViewById(R.id.filter_users_radio_button);
-            setAllButtonsVisibility(View.GONE);
-
-            FragmentActivity parentActivity = (FragmentActivity) context;
-            mParentFragment = (BaseRecyclerViewFragment) parentActivity.getSupportFragmentManager().findFragmentById(R.id.base_recycler_view_fragment);
-            mRadioGroup.check(mParentFragment.getBaseRecyclerController().getFilterCheckedId());
-        }
-
-        // TODO: setOptions(FilterOptions options, @Nullable Object filterItem) ... so if filterItem instanceOf User, then onCheckChange can call listPostForUser(user.getId()).
-        public void setOptions(@Nullable EnumSet<FilterOptions> options, @Nullable Object infoItem) {
-
-            // <editor-fold defaultstate="collapsed" desc="Set Buttons Visibility specified by FilterOptions">
-            if (options == null) {
-                options = EnumSet.of(FilterOptions.NONE);
-            }
-
-            if (options.contains(FilterOptions.NONE)) {
-                // TODO: Remove? - why hide Buttons if Parent hidden.
-                setAllButtonsVisibility(View.GONE);
-                // <editor-fold defaultstate="collapsed" desc="Hide FilterVH when FilterOptions.NONE">
-                /**
-                 * View.setVisibility(View.GONE) hides the FilterVH, but whitespace remains in RecyclerView.
-                 * Remove the RecyclerView whitespace by setting height 0.
-                 * @see: <a href="https://stackoverflow.com/a/46342024"/>
-                 */
-                // </editor-fold>
-                View v = (View) mFilterTextView.getParent();
-                v.setVisibility(View.GONE);
-                v.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
-            } else if (options.contains(FilterOptions.ALL)) {
-                setAllButtonsVisibility(View.VISIBLE);
-            } else {
-
-                // TODO: void setVisibilityForFilterOptions(options); ?...
-                if (options.contains(FilterOptions.POSTS)) {
-                    mPostsButton.setVisibility(View.VISIBLE);
-                }
-
-                if (options.contains(FilterOptions.COMMENTS)) {
-                    mCommentsButton.setVisibility(View.VISIBLE);
-                }
-
-                if (options.contains(FilterOptions.ALBUMS)) {
-                    mAlbumsButton.setVisibility(View.VISIBLE);
-                }
-
-                if (options.contains(FilterOptions.USERS)) {
-                    mUsersButton.setVisibility(View.VISIBLE);
-                }
-            }
-            // </editor-fold>
-
-            mFilterTextView.setText("Filter By");
-
-            // <editor-fold defaultstate="collapsed" desc="Set RadioGroup.OnCheckedChangeListener">
-            if (infoItem instanceof User) {
-                final User infoUser = (User) infoItem;
-                final int userId = infoUser.getUserId();
-                mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        mParentFragment.getBaseRecyclerController().setFilterCheckedId(checkedId);
-                        switch (checkedId) {
-                            case R.id.filter_posts_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listPostsForUser(userId));
-                                break;
-                            case R.id.filter_comments_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listCommentsForUser(userId));
-                                break;
-                            case R.id.filter_albums_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listAlbumsForUser(userId));
-                                break;
-                        }
-                    }
-                });
-            } else {
-                mRadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup group, int checkedId) {
-                        mParentFragment.getBaseRecyclerController().setFilterCheckedId(checkedId);
-                        switch (checkedId) {
-                            case R.id.filter_posts_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listPosts());
-                                break;
-                            case R.id.filter_comments_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listComments());
-                                break;
-                            case R.id.filter_albums_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listAlbums());
-                                break;
-                            case R.id.filter_users_radio_button:
-                                mParentFragment.getBaseRecyclerController().beginCall(API.getInstance().listUsers());
-                        }
-                    }
-                });
-            }
-            // </editor-fold>
-        }
-
-        private void setAllButtonsVisibility(int visibility) {
-            mPostsButton.setVisibility(visibility);
-            mCommentsButton.setVisibility(visibility);
-            mAlbumsButton.setVisibility(visibility);
-            mUsersButton.setVisibility(visibility);
-        }
-
-    }
-
-
 
     protected static final int SELECTION_DETAIL_HOLDER_VIEW_TYPE = 0;
     protected static final int FILTER_HOLDER_VIEW_TYPE = 1;
@@ -294,6 +82,8 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int position)  {
 
+        // TODO: mAdapterItems[SELECTION_DETAIL_HOLDER_VIEW_TYPE] and mAdapterItems[FILTER_HOLDER_VIEW_TYPE]
+        // TODO: Instead of mAdapterItems[position] and mAdapterItems[position - 1] ?
         switch (viewHolder.getItemViewType()) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
                 // Setup SelectionDetailViewHolder
@@ -304,7 +94,8 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 // Setup FilterViewHolder
                 FilterViewHolder filterViewHolder = (FilterViewHolder) viewHolder;
                 EnumSet<FilterOptions> filterOptions = (EnumSet<FilterOptions>) mAdapterItems[position];
-                filterViewHolder.setOptions(filterOptions, mAdapterItems[position - 1]);
+                Object selectionDetail = mAdapterItems[position - 1];
+                filterViewHolder.setOptions(filterOptions, selectionDetail); // TODO: rename setOptionsForDetail ?...
                 break;
             case BASE_HOLDER_VIEW_TYPE:
                 // Setup remaining BaseViewHolders

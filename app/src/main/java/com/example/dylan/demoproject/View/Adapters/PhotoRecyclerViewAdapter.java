@@ -10,18 +10,12 @@ import android.widget.ImageView;
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
+import com.example.dylan.demoproject.View.ViewHolders.AlbumSelectionDetailViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.PhotoViewHolder;
 import com.squareup.picasso.Picasso;
 
 public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
-
-    public static class PhotoViewHolder extends BaseRecyclerViewAdapter.BaseViewHolder {
-        public ImageView mThumbnailView;
-        public PhotoViewHolder(View view) {
-            super(view);
-            mThumbnailView = view.findViewById(R.id.thumbnail_view);
-        }
-
-    }
 
     public PhotoRecyclerViewAdapter(Object[] objects) {//Post[] posts) {
         super(objects);
@@ -33,14 +27,18 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(final ViewGroup parent, int viewType) {
 
+        final Context context = parent.getContext();
+        final LayoutInflater layoutInflater = LayoutInflater.from(context);
+
+        View layout;
         switch (viewType) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
-                return super.onCreateViewHolder(parent, viewType);
+                layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
+                return new AlbumSelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);
             default:
-                final View layout = LayoutInflater.from(parent.getContext()).inflate(R.layout.photo_view_holder, parent, false);
-                final Context context = parent.getContext();
+                layout = layoutInflater.inflate(R.layout.photo_view_holder, parent, false);
 
                 layout.setOnClickListener(new View.OnClickListener() {
                     @Override

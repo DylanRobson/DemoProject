@@ -47,7 +47,6 @@ public class BaseRecyclerViewFragment extends Fragment implements AdapterChanged
         mBaseRecyclerView = layout.findViewById(R.id.base_recycler_view);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         mBaseRecyclerView.setLayoutManager(linearLayoutManager);
-        //mPostsRecyclerView.setHasFixedSize(true);
 
         DividerItemDecoration dividerDecoration = new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL);
         mBaseRecyclerView.addItemDecoration(dividerDecoration);

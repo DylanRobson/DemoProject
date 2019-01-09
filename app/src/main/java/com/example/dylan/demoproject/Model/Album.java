@@ -22,6 +22,16 @@ public class Album {
     public String toString() {
         StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("User ID: " + mUserId + '\n');
+        sBuilder.append(getDetailString());
+
+        return sBuilder.toString();
+    }
+
+    /**
+     * Same as toString except excludes mUserId, so that SelectionDetailViewHolder can display User ID in separate TextView.
+     */
+    public String getDetailString() {
+        StringBuilder sBuilder = new StringBuilder();
         sBuilder.append("Album ID: " + mAlbumId + '\n');
         sBuilder.append("Album Title: " + mTitle + '\n');
 

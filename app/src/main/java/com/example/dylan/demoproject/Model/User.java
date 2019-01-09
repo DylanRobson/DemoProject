@@ -16,7 +16,7 @@ public class User {
     @SerializedName("email")
     private String mEmail;
 
-    // TODO: object deserialization
+    // TODO: inner class deserialization
     //private Address mAddress;
 
     @SerializedName("phone")
@@ -25,7 +25,7 @@ public class User {
     @SerializedName("website")
     private String mWebsite;
 
-    // TODO: object deserialization
+    // TODO: inner class deserialization
     // private Company mCompany;
 
     @Override
