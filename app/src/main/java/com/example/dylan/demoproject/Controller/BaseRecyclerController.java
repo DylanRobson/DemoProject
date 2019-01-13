@@ -80,7 +80,7 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
     public void onResponse(Call<List<E>> call, Response<List<E>> response) {
 
         if (response.isSuccessful()) {
-            // Trigger onAdapterChanged.
+            // Trigger onAdapterChanged event.
             if (mAdapterChangedListener != null) {
                 final Object[] adapterItems = addAdapterHeaderItems(new ArrayList<Object>(response.body()));
                 // Offset = 1 for SelectionDetail header Item xor FilterOptions header Item.
@@ -91,7 +91,7 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
                 mAdapterChangedListener.onAdapterChanged(updateAdapter);
             }
         } else {
-            // Trigger onRetrofitError.
+            // Trigger onRetrofitError event.
             if (mRetrofitErrorListener != null) {
                 String errorMessage = "Response Unsuccessful. HTTP Error Code: " + response.code();
                 mRetrofitErrorListener.onRetrofitError(errorMessage);
@@ -109,7 +109,7 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
     @Override
     public void onFailure(Call<List<E>> call, Throwable t) {
 
-        // Trigger onRetrofitError.
+        // Trigger onRetrofitError event.
         if (mRetrofitErrorListener != null) {
             String errorMessage = "Response Failure. Message: " + t.getLocalizedMessage();
             mRetrofitErrorListener.onRetrofitError(errorMessage);

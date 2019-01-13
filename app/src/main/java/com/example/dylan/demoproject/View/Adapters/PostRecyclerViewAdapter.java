@@ -10,6 +10,7 @@ import com.example.dylan.demoproject.Model.Post;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
 import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
+import com.example.dylan.demoproject.View.ViewHolders.UserFilterViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.UserSelectionDetailViewHolder;
 
 public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
@@ -33,7 +34,8 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
                 layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
                 return new UserSelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
-                return super.onCreateViewHolder(parent, viewType);
+                layout = layoutInflater.inflate(R.layout.filter_view_holder, parent, false);
+                return new UserFilterViewHolder(context, layout);
             default:
                 layout = layoutInflater.inflate(R.layout.base_view_holder, parent, false);
 

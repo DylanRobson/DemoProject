@@ -95,7 +95,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
                 FilterViewHolder filterViewHolder = (FilterViewHolder) viewHolder;
                 EnumSet<FilterOptions> filterOptions = (EnumSet<FilterOptions>) mAdapterItems[position];
                 Object selectionDetail = mAdapterItems[position - 1];
-                filterViewHolder.setOptions(filterOptions, selectionDetail); // TODO: rename setOptionsForDetail ?...
+                filterViewHolder.setOptions(filterOptions, selectionDetail);
                 break;
             case BASE_HOLDER_VIEW_TYPE:
                 // Setup remaining BaseViewHolders
