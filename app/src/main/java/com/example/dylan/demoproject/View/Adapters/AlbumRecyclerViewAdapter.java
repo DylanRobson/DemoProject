@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
-import com.example.dylan.demoproject.View.ViewHolders.AlbumSelectionDetailViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.UserFilterViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.UserSelectionDetailViewHolder;
@@ -32,7 +31,7 @@ public class AlbumRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         View layout;
         switch (viewType) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
-                layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
+                layout = layoutInflater.inflate(R.layout.selection_detail_view_holder, parent, false);
                 return new UserSelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
                 layout = layoutInflater.inflate(R.layout.filter_view_holder, parent, false);

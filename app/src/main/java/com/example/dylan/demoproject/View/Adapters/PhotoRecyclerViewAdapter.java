@@ -5,13 +5,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.example.dylan.demoproject.Model.Photo;
 import com.example.dylan.demoproject.R;
 import com.example.dylan.demoproject.Utils.StartActivityUtils;
 import com.example.dylan.demoproject.View.ViewHolders.AlbumSelectionDetailViewHolder;
-import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.PhotoViewHolder;
 import com.squareup.picasso.Picasso;
 
@@ -33,7 +31,7 @@ public class PhotoRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         View layout;
         switch (viewType) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
-                layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
+                layout = layoutInflater.inflate(R.layout.selection_detail_view_holder, parent, false);
                 return new AlbumSelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
                 return super.onCreateViewHolder(parent, viewType);

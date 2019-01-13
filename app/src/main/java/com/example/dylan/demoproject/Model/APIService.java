@@ -1,11 +1,5 @@
 package com.example.dylan.demoproject.Model;
 
-import com.example.dylan.demoproject.Model.Album;
-import com.example.dylan.demoproject.Model.Comment;
-import com.example.dylan.demoproject.Model.Photo;
-import com.example.dylan.demoproject.Model.Post;
-import com.example.dylan.demoproject.Model.User;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -57,12 +51,8 @@ public interface APIService {
     //endregion
 
     //region Single GET requests...
-    // TODO: refactor to Call<List<User>> for BaseRecyclerViewFragment callback. ? - no bc this call is never made in recycler view.
     @GET("users/{userId}")
     Call<User> getUser(@Path("userId") int userId);
-
-    // TODO: getPhoto ? - no, use Picasso.
-    // unless we're using getPhoto to read the Photo json metadata.
     // endregion
 
     //region POST requests...

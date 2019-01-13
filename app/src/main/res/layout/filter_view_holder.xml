@@ -47,7 +47,6 @@
             android:layout_height="match_parent"
             android:text="USERS"
             android:padding="16dp"/>
-        <!-- TODO: filter_users_radio_button-->
     </RadioGroup>
 
 </LinearLayout>

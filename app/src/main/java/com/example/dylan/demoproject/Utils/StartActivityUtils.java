@@ -15,8 +15,6 @@ import com.example.dylan.demoproject.View.Activities.AboutActivity;
 
 public class StartActivityUtils {
 
-    // TODO: I think all startActivity methods should have Obj param instead of Id,
-    // TODO: so that we fully have the info for InfoVH, instead of having to make another API call with given ID.
     /**
      * Starts PostActivity.
      */

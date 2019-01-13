@@ -4,7 +4,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * APIService singleton object. //TODO: verify singleton style/use case.
+ * APIService singleton object.
  */
 public class API {
 

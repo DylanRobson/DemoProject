@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,8 +23,10 @@ public class BaseRecyclerViewFragment extends Fragment implements AdapterChanged
     private RecyclerView mBaseRecyclerView;
     private BaseRecyclerController mBaseRecyclerController;
     private FloatingActionButton mRefreshFloatingButton;
-    // TODO: ... to HTTP POST based on current Adapter selection.
+    // TODO: ... to HTTP POST an object corresponding to the current Adapter selection.
     // private FloatingActionButton mCreateFloatingButton;
+
+    private static final String TAG = "BaseRecyclerFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -80,7 +83,7 @@ public class BaseRecyclerViewFragment extends Fragment implements AdapterChanged
         // Show Snackbar with errorMessage.
         Snackbar.make(this.getView(), errorMessage, Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show();
-        // TODO: Log.
+        Log.e(TAG, errorMessage);
     }
 
     public BaseRecyclerController getBaseRecyclerController() {

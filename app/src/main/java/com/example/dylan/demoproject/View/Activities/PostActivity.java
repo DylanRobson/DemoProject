@@ -11,12 +11,10 @@ import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 
 public class PostActivity extends AppCompatActivity {
 
-    // TODO: private Button mPostCommentButton; // To POST new comment.
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_post);
+        setContentView(R.layout.activity_post);
         setTitle("PostActivity");
 
         Intent intent = getIntent();

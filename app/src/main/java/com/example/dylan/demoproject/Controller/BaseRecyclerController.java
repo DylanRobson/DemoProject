@@ -36,13 +36,7 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
      * Stored so can refresh (HTTP GET) for refreshButton onClick
      */
     private Call<List<E>> mLastApiCall;
-    /**
-     * TODO: Doc.
-     */
     private Object mSelectionDetail;
-    /**
-     * TODO: Doc.
-     */
     private EnumSet<FilterOptions> mFilterOptionsSet;
     /**
      * Stored so can recheck the correct RadioButton after onAdapterChanged causes FilterViewHolder to be redrawn.
@@ -72,9 +66,6 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
      * <p>
      * Note: An HTTP response may still indicate an application-level failure such as a 404 or 500.
      * Call {@link Response#isSuccessful()} to determine if the response indicates success.
-     *
-     * @param call
-     * @param response
      */
     @Override
     public void onResponse(Call<List<E>> call, Response<List<E>> response) {
@@ -102,9 +93,6 @@ public class BaseRecyclerController<E> implements Callback<List<E>> {
     /**
      * Invoked when a network exception occurred talking to the server or when an unexpected
      * exception occurred creating the request or processing the response.
-     *
-     * @param call
-     * @param t
      */
     @Override
     public void onFailure(Call<List<E>> call, Throwable t) {

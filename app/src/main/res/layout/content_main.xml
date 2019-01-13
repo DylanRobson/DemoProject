@@ -9,7 +9,6 @@
     tools:context=".View.Activities.MainActivity"
     tools:showIn="@layout/activity_main">
 
-    <!-- TODO: move fragment directly into activity_main -->
     <fragment
         android:name="com.example.dylan.demoproject.View.BaseRecyclerViewFragment"
         android:id="@+id/base_recycler_view_fragment"

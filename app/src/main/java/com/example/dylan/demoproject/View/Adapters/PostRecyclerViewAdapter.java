@@ -31,7 +31,7 @@ public class PostRecyclerViewAdapter extends BaseRecyclerViewAdapter {
         View layout;
         switch (viewType) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
-                layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
+                layout = layoutInflater.inflate(R.layout.selection_detail_view_holder, parent, false);
                 return new UserSelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
                 layout = layoutInflater.inflate(R.layout.filter_view_holder, parent, false);

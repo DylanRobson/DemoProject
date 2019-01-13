@@ -5,12 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <!-- TODO: info_header_text_view ... e.g. displays: "Post Information", for now: ** InfoHeader ** (Post) -->
-
-    <!-- TODO: info_link_text_view ... e.g. User ID: 1 >> onClick >> UserActivity -->
-
-    <!-- TODO: info_body_text_view-->
-
     <TextView
         android:id="@+id/info_text_view"
         android:layout_width="match_parent"

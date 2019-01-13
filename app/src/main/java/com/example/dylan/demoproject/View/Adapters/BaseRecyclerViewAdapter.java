@@ -1,27 +1,13 @@
 package com.example.dylan.demoproject.View.Adapters;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
-import android.widget.TextView;
 
-import com.example.dylan.demoproject.Model.API;
-import com.example.dylan.demoproject.Model.Album;
 import com.example.dylan.demoproject.Model.FilterOptions;
-import com.example.dylan.demoproject.Model.Post;
-import com.example.dylan.demoproject.Model.User;
 import com.example.dylan.demoproject.R;
-import com.example.dylan.demoproject.Utils.StartActivityUtils;
-import com.example.dylan.demoproject.View.BaseRecyclerViewFragment;
 import com.example.dylan.demoproject.View.ViewHolders.BaseViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.FilterViewHolder;
 import com.example.dylan.demoproject.View.ViewHolders.SelectionDetailViewHolder;
@@ -65,7 +51,7 @@ public class BaseRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.V
         View layout;
         switch (viewType) {
             case SELECTION_DETAIL_HOLDER_VIEW_TYPE:
-                layout = layoutInflater.inflate(R.layout.info_view_holder, parent, false);
+                layout = layoutInflater.inflate(R.layout.selection_detail_view_holder, parent, false);
                 return new SelectionDetailViewHolder(context, layout);
             case FILTER_HOLDER_VIEW_TYPE:
                 layout = layoutInflater.inflate(R.layout.filter_view_holder, parent, false);

@@ -15,7 +15,7 @@ public class AlbumActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_display_album);
+        setContentView(R.layout.activity_album);
         setTitle("AlbumActivity");
 
         Intent intent = getIntent();

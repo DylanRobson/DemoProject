@@ -63,19 +63,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
     }
 
-    /**
-     * Currently serves as refresh/fetch button
-     * TODO: make create new Post button (HTTP POST request).
-     */
+
     private void configureCreatePostFloatingButton() {
         final Context context = this;
         FloatingActionButton postFab = findViewById(R.id.create_post_floating_button);
         postFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-
                 StartActivityUtils.startCreatePostActivity(context);
             }
         });

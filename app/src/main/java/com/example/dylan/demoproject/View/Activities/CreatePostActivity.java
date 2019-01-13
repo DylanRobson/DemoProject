@@ -23,7 +23,6 @@ public class CreatePostActivity extends AppCompatActivity implements Callback<Po
         setContentView(R.layout.activity_create_post);
         setTitle("CreatePostActivity");
 
-        // TODO: configureCreatePostButton();
         Button createPostButton = findViewById(R.id.create_post_button);
         createPostButton.setOnClickListener(new View.OnClickListener() {
             @Override
